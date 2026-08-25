@@ -8,7 +8,7 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | Nombre y apellido | Usuario GitHub |
 | :--- | :--- |
 | Lola Torres Rodriguez | @lolatorresr |
-| Marco Pappalardo | @ |
-| Juan Pablo Lombisano Bentos | @ |
-| Lucia Daniela Ruiz | @ |
+| Marco Pappalardo | @MarcoPappalardo1 |
+| Juan Pablo Lombisano Bentos | @Juanplombisano |
+| Lucia Daniela Ruiz | @LDR16 |
 
