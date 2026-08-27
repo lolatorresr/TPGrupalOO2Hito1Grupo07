@@ -12,6 +12,7 @@ jdbc:mysql://localhost/bd-epicentro-gourmet</property>
 <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 <property name="show_sql">false</property><!-- en true muestra hql en
 consola-->
-<!-- Mapeo Entidades -->
+<mapping resource="mapeos/Persona.hbm.xml" />
+<mapping resource="mapeos/UnidadDeVenta.hbm.xml" />
 </session-factory>
 </hibernate-configuration>
