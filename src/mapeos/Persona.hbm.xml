@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-   <!-- mapeos -->
+<class name="datos.Persona" table="persona">
+<id column="idPersona" name="idPersona">
+<generator class="identity" />
+</id>
+<property column="apellido" name="apellido" type="string" />
+<property column="nombre" name="nombre" type="string" />
+<property column="dni" name="dni" type="int" />
+<property column="fechaNacimiento" name="fechaNacimiento"
+type="LocalDate" />
+<property column="fechaIngreso" name="fechaIngreso"
+type="LocalDate" />
+<property column="sueldoBase" name="sueldoBase" type="double" />
+
+</class>
 </hibernate-mapping>
+
+
+
+
