@@ -3,18 +3,27 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<class name="datos.Persona" table="persona">
-<id column="idPersona" name="idPersona">
-<generator class="identity" />
-</id>
-<property column="apellido" name="apellido" type="string" />
-<property column="nombre" name="nombre" type="string" />
-<property column="dni" name="dni" type="int" />
-<property column="fechaNacimiento" name="fechaNacimiento"
-type="LocalDate" />
-<property column="fechaIngreso" name="fechaIngreso"
-type="LocalDate" />
-<property column="sueldoBase" name="sueldoBase" type="double" />
+	<class name="datos.Persona" table="persona">
+		<id column="idPersona" name="idPersona">
+			<generator class="identity" />
+		</id>
+		
+		<property column="apellido" name="apellido" type="string" />
+		<property column="nombre" name="nombre" type="string" />
+		<property column="dni" name="dni" type="long" />
+		<property column="fechaNacimiento" name="fechaNacimiento"
+			type="date" />
+		<property column="fechaIngreso" name="fechaIngreso"
+			type="date" />
+		<property column="sueldoBase" name="sueldoBase" type="double" />
+
+		<!-- subclases-->
+		<joined-subclass name="datos.Cajero" table="cajero">
+			<key column="idPersona"/>
+			<property name="turnoTrabajo" column="turnoTrabajo" type="string"/>
+			<property name="recaudacionTotal" column="recaudacionTotal" type="double"/>
+		</joined-subclass>
+
 
 </class>
 </hibernate-mapping>

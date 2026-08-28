@@ -5,6 +5,7 @@ import dao.PersonaDao;
 import datos.Persona;
 public class PersonaABM {
 PersonaDao dao = new PersonaDao();
+/*
 
 public Persona traer(long idPersona) {
 return dao.traer(idPersona);
@@ -23,6 +24,7 @@ protected LocalDate fechaIngreso;
 protected double sueldoBase;
 protected int idPersona;
 
+
 public int agregar(String apellido, String nombre, long dni, LocalDate fechaNacimiento,LocalDate fechaIngreso,double sueldoBase)throws Exception {
 	
 	Persona pe = dao.traer(dni);
@@ -40,7 +42,7 @@ return dao.agregar(p);
 dni y si eso pasa lanzar la Exception
 
 dao.actualizar(c);
-}*/
+}
 
 public void eliminar(long idPersona)throws Exception {
 
@@ -53,5 +55,5 @@ dao.eliminar(p);
 
 public List<Persona> traer() {
 return dao.traer();
-}
+}*/
 }
