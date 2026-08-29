@@ -11,7 +11,7 @@ public class Cajero extends Persona {
 	
 	public Cajero(String nombre, String apellido, long dni, LocalDate fechaNacimiento,
 			LocalDate fechaIngreso, double sueldoBase, String turnoTrabajo, double recaudacionTotal) {
-		//super(nombre, apellido, dni, fechaNacimiento, fechaIngreso, sueldoBase);
+		super(nombre, apellido, dni, fechaNacimiento, fechaIngreso, sueldoBase);
 		this.turnoTrabajo=turnoTrabajo;
 		this.recaudacionTotal=recaudacionTotal;
 	}
@@ -34,7 +34,7 @@ public class Cajero extends Persona {
 
 	@Override
 	public String toString() {
-		return "Cajero [turnoTrabajo=" + turnoTrabajo + ", recaudacionTotal=" + recaudacionTotal + "]";
+		return super.toString() + " | Cajero [turnoTrabajo=" + turnoTrabajo + ", recaudacionTotal=" + recaudacionTotal + "]";
 	}
 	
 	

@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.Cajero;
+import datos.Persona;
 
 
 public class PersonaDao {
@@ -20,7 +21,77 @@ public class PersonaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 	
-	//metodos persona
+	public int agregar(Persona persona) {
+		int id=0;
+		try {
+			iniciaOperacion();
+			id= Integer.parseInt(session.save(persona).toString());
+			tx.commit();
+		} catch(HibernateException he) {
+			manejaExcepcion(he);
+		} finally {
+			session.close();
+		}
+		return id;
+	}
+	
+	public Persona traer(int idPersona) {
+		Persona p = null;
+		try {
+			iniciaOperacion();
+			p= (Persona) session.get(Persona.class, idPersona);
+		} finally {
+			session.close();
+		}
+		return p;
+	}
+	
+	public Persona traer(long dni) {
+		Persona p = null;
+		try {
+			iniciaOperacion();
+			p= (Persona) session.createQuery("from Persona p where p.dni = :dni").setParameter("dni", dni)
+					.uniqueResult();
+		} finally {
+			session.close();
+		}
+		return p;
+	}
+	
+	public List<Persona> traerPersonas(){
+		List<Persona> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Persona", Persona.class).getResultList();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+	
+	public void actualizar(Persona p) {
+		try {
+			iniciaOperacion();
+			session.update(p);
+			tx.commit();
+		} catch(HibernateException he) {
+			manejaExcepcion(he);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public void eliminar(Persona p) {
+		try {
+			iniciaOperacion();
+			session.delete(p);
+			tx.commit();
+		} catch(HibernateException he) {
+			manejaExcepcion(he);
+		} finally { 
+			session.close();
+		}
+	}
 	
 	
 	
@@ -37,7 +108,7 @@ public class PersonaDao {
 		return lista;
 	}
 	
-	//traer cajero x dni
+	//traer cajero x id
 	public Cajero traerCajero(int idPersona) {
 		Cajero c = null;
 		try {

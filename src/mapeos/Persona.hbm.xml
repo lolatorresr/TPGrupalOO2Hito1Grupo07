@@ -12,9 +12,9 @@
 		<property column="nombre" name="nombre" type="string" />
 		<property column="dni" name="dni" type="long" />
 		<property column="fechaNacimiento" name="fechaNacimiento"
-			type="date" />
+			type="LocalDate" />
 		<property column="fechaIngreso" name="fechaIngreso"
-			type="date" />
+			type="LocalDate" />
 		<property column="sueldoBase" name="sueldoBase" type="double" />
 
 		<!-- subclases-->
