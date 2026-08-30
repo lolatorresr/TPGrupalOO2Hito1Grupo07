@@ -32,34 +32,6 @@ public class Persona {
 	}
 
 	
-	/*public Persona traer(int dni) {
-		int i=0;
-		Persona personaBuscada=null;
-		while(i<this.lstPersonas.size()&&personaBuscada==null) {
-			if(this.lstPersonas.get(i).getDni()==dni) {
-				personaBuscada=this.lstPersonas.get(i);
-			}
-			i++;
-		}
-		return personaBuscada;
-		
-		
-	}*/
-	
-	/*public Persona traer(LocalDate fecha) {
-		int i=0;
-		Persona personaBuscada=null;
-		while(i<this.lstPersonas.size()&&personaBuscada==null) {
-			if(this.lstPersonas.get(i).getFechaNacimiento().isEquals(fecha) {
-				personaBuscada=this.lstPersonas.get(i);
-			}
-			i++;
-		}
-		return personaBuscada;
-		
-		
-	}*/
-	
 	public int getIdPersona() {
 		return idPersona;
 	}
