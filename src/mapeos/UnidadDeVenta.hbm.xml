@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <!-- mapeos -->
+	<class name="datos.UnidadDeVenta" table="UnidadDeVenta">
+		
+		<id column="idUnidadDeVenta" name="idUnidadDeVenta">
+			<generator class="identity" />
+		</id>
+		
+
+		<property column="nombreComercial" name="nombreComercial" type="string" />
+		<property column="codigoUnico" name="codigoUnico" type="string" />
+		<property column="superficie" name="superficie" type="double" />
+		<property column="responsable" name="responsable" type="Persona" />
+		
+		<set name="personal" table="personal" order-by="idUnidadDeVenta asc" inverse="true"
+			lazy="true" fetch="select">
+		<key column="idUnidadDeVenta" not-null="true" />
+		<one-to-many class="datos.Persona" />
+		</set>
+		
+		<set name="pedidos" table="pedidos" order-by="idUnidadDeVenta asc" inverse="true"
+			lazy="true" fetch="select">
+		<key column="idUnidadDeVenta" not-null="true" />
+		<one-to-many class="datos.Pedido" />
+		</set>
+		<set name="platos" table="platos" order-by="idUnidadDeVenta asc" inverse="true"
+			lazy="true" fetch="select">
+		<key column="idUnidadDeVenta" not-null="true" />
+		<one-to-many class="datos.Plato" />
+		</set>
+
+</class>
 </hibernate-mapping>
+
+
+
