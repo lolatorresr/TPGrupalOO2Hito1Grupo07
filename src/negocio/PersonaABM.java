@@ -9,37 +9,37 @@ public class PersonaABM {
 	
 	//--------METODOS PERSONA--------
 	
-	public int agregar (String nombre, String apellido, long dni, LocalDate fechaNacimiento, 
+	public int agregarPersona (String nombre, String apellido, long dni, LocalDate fechaNacimiento, 
 			LocalDate fechaIngreso, double sueldoBase) throws Exception {
-		if(dao.traer(dni) != null) {
+		if(dao.traerPersona(dni) != null) {
 			throw new Exception("ERROR: Ya existe una persona registrada con el DNI " +  dni);
 		}
 		Persona c= new Persona(nombre, apellido, dni, fechaNacimiento, fechaIngreso, sueldoBase);
-		return dao.agregar(c);
+		return dao.agregarPersona(c);
 	}
 	
-	public Persona traer(int idPersona) {
-		return dao.traer(idPersona);
+	public Persona traerPersona(int idPersona) {
+		return dao.traerPersona(idPersona);
 	}
 	
-	public Persona traer(long dni) {
-		return dao.traer(dni);
+	public Persona traerPersona(long dni) {
+		return dao.traerPersona(dni);
 	}
 	
 	public List<Persona> traerPersonas(){
 		return dao.traerPersonas();
 	}
 	
-	public void modificar(Persona p) throws Exception{
-		dao.actualizar(p);
+	public void modificarPersona(Persona p) throws Exception{
+		dao.actualizarPersona(p);
 	}
 	
-	public void eliminar(int idPersona) throws Exception{
-		Persona p = dao.traer(idPersona);
+	public void eliminarPersona(int idPersona) throws Exception{
+		Persona p = dao.traerPersona(idPersona);
 		if(p == null) {
 			throw new Exception("ERROR: No existe la persona con ID " + idPersona);
 		}
-		dao.eliminar(p);
+		dao.eliminarPersona(p);
 	}
 	
 	//--------METODOS CAJERO--------
@@ -47,12 +47,12 @@ public class PersonaABM {
 	public int agregarCajero(String nombre, String apellido, long dni, LocalDate fechaNacimiento, 
 			LocalDate fechaIngreso, double sueldoBase, String turnoTrabajo, 
 			double recaudacionTotal) throws Exception{
-		if(dao.traer(dni) != null) {
+		if(dao.traerPersona(dni) != null) {
 			throw new Exception("ERROR: Ya existe una persona registrada con el DNI " + dni);
 		}
 		
 		Cajero c = new Cajero(nombre, apellido, dni, fechaNacimiento, fechaIngreso, sueldoBase, turnoTrabajo, recaudacionTotal);
-		return dao.agregar(c);
+		return dao.agregarPersona(c);
 	}
 	
 	public Cajero traerCajero(int idPersona) {

@@ -22,7 +22,6 @@ public class Persona {
 	
 	public Persona(String nombre, String apellido, long dni, LocalDate fechaNacimiento, LocalDate fechaIngreso,
 			double sueldoBase) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;

@@ -14,6 +14,6 @@ jdbc:mysql://localhost/bd-epicentro-gourmet</property>
 consola-->
 <property name="hbm2ddl.auto">create</property>
 <mapping resource="mapeos/Persona.hbm.xml" />
-<!--<mapping resource="mapeos/UnidadDeVenta.hbm.xml" />-->
+<mapping resource="mapeos/UnidadDeVenta.hbm.xml" />
 </session-factory>
 </hibernate-configuration>

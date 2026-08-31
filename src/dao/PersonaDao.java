@@ -21,7 +21,7 @@ public class PersonaDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 	
-	public int agregar(Persona persona) {
+	public int agregarPersona(Persona persona) {
 		int id=0;
 		try {
 			iniciaOperacion();
@@ -35,7 +35,7 @@ public class PersonaDao {
 		return id;
 	}
 	
-	public Persona traer(int idPersona) {
+	public Persona traerPersona(int idPersona) {
 		Persona p = null;
 		try {
 			iniciaOperacion();
@@ -46,7 +46,7 @@ public class PersonaDao {
 		return p;
 	}
 	
-	public Persona traer(long dni) {
+	public Persona traerPersona(long dni) {
 		Persona p = null;
 		try {
 			iniciaOperacion();
@@ -69,7 +69,7 @@ public class PersonaDao {
 		return lista;
 	}
 	
-	public void actualizar(Persona p) {
+	public void actualizarPersona(Persona p) {
 		try {
 			iniciaOperacion();
 			session.update(p);
@@ -81,7 +81,7 @@ public class PersonaDao {
 		}
 	}
 	
-	public void eliminar(Persona p) {
+	public void eliminarPersona(Persona p) {
 		try {
 			iniciaOperacion();
 			session.delete(p);
