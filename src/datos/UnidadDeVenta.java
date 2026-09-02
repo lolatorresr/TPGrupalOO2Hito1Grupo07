@@ -10,6 +10,8 @@ public class UnidadDeVenta {
 	protected double superficie;
 	protected String codigoUnico;
 	protected Set<Persona> personal;
+	protected Set<Plato> platos;
+	protected Set<Pedido> pedidos;
 	
 	
 	public UnidadDeVenta () {
@@ -22,6 +24,8 @@ public class UnidadDeVenta {
 		this.superficie=superficie;
 		this.codigoUnico=codigoUnico;
 		this.personal= new HashSet<Persona>();
+		this.platos= new HashSet<Plato>();
+		this.pedidos= new HashSet<Pedido>();
 	}
 
 	public int getIdUnidadDeVenta() {
@@ -71,13 +75,32 @@ public class UnidadDeVenta {
 	public void setPersonal(Set<Persona> personal) {
 		this.personal = personal;
 	}
+	
+
+	public Set<Plato> getPlatos() {
+		return platos;
+	}
+
+	public void setPlatos(Set<Plato> platos) {
+		this.platos = platos;
+	}
+
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 	@Override
 	public String toString() {
 		return "UnidadDeVenta [idUnidadDeVenta=" + idUnidadDeVenta + ", nombreComercial=" + nombreComercial
 				+ ", responsable=" + responsable + ", superficie=" + superficie + ", codigoUnico=" + codigoUnico
-				+ ", personal=" + personal + "]";
+				+ ", personal=" + personal + ", platos=" + platos + ", pedidos=" + pedidos + "]";
 	}
+
+	
 	
 	
 	

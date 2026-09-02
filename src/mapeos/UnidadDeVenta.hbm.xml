@@ -13,22 +13,22 @@
 		<property column="nombreComercial" name="nombreComercial" type="string" />
 		<property column="codigoUnico" name="codigoUnico" type="string" />
 		<property column="superficie" name="superficie" type="double" />
-		<property column="responsable" name="responsable" type="Persona" />
+		<many-to-one name="responsable" class="datos.Persona" column="responsable" />
 		
-		<set name="personal" table="personal" order-by="idUnidadDeVenta asc" inverse="true"
+		<set name="personal" table="personal" inverse="true"
 			lazy="true" fetch="select">
 		<key column="idUnidadDeVenta" not-null="true" />
 		<one-to-many class="datos.Persona" />
 		</set>
 		
-		<set name="pedidos" table="pedidos" order-by="idUnidadDeVenta asc" inverse="true"
+		<set name="pedidos" table="pedidos" inverse="true"
 			lazy="true" fetch="select">
 		<key column="idUnidadDeVenta" not-null="true" />
 		<one-to-many class="datos.Pedido" />
 		</set>
-		<set name="platos" table="platos" order-by="idUnidadDeVenta asc" inverse="true"
+		<set name="platos" table="platos" inverse="true"
 			lazy="true" fetch="select">
-		<key column="idUnidadDeVenta" not-null="true" />
+		<key column="idUnidadDeVenta" not-null="false" />
 		<one-to-many class="datos.Plato" />
 		</set>
 

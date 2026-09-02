@@ -38,7 +38,7 @@ public class PersonaDao {
 	public Persona traerPersona(int idPersona) {
 		Persona p = null;
 		try {
-			iniciaOperacion();
+			session = HibernateUtil.getSessionFactory().openSession();
 			p= (Persona) session.get(Persona.class, idPersona);
 		} finally {
 			session.close();
@@ -49,7 +49,7 @@ public class PersonaDao {
 	public Persona traerPersona(long dni) {
 		Persona p = null;
 		try {
-			iniciaOperacion();
+			session = HibernateUtil.getSessionFactory().openSession();
 			p= (Persona) session.createQuery("from Persona p where p.dni = :dni").setParameter("dni", dni)
 					.uniqueResult();
 		} finally {
@@ -61,7 +61,7 @@ public class PersonaDao {
 	public List<Persona> traerPersonas(){
 		List<Persona> lista = null;
 		try {
-			iniciaOperacion();
+			session = HibernateUtil.getSessionFactory().openSession();
 			lista = session.createQuery("from Persona", Persona.class).getResultList();
 		} finally {
 			session.close();
@@ -100,7 +100,7 @@ public class PersonaDao {
 	public List<Cajero> traerCajeros(){
 		List<Cajero> lista = null;
 		try {
-			iniciaOperacion();
+			session = HibernateUtil.getSessionFactory().openSession();
 			lista = session.createQuery("from Cajero", Cajero.class).getResultList();
 		} finally {
 			session.close();
@@ -112,7 +112,7 @@ public class PersonaDao {
 	public Cajero traerCajero(int idPersona) {
 		Cajero c = null;
 		try {
-			iniciaOperacion();
+			session = HibernateUtil.getSessionFactory().openSession();
 			c = (Cajero) session.get(Cajero.class, idPersona);
 		} finally {
 			session.close();
@@ -124,7 +124,7 @@ public class PersonaDao {
 	public Cajero traerCajeroMayorRecaudacion() {
 		Cajero c = null;
 		try {
-			iniciaOperacion();
+			session = HibernateUtil.getSessionFactory().openSession();
 			c= (Cajero) session.createQuery("from Cajero c order by c.recaudacionTotal desc")
 					.setMaxResults(1).uniqueResult();
 		}finally {

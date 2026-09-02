@@ -15,5 +15,7 @@ consola-->
 <property name="hbm2ddl.auto">create</property>
 <mapping resource="mapeos/Persona.hbm.xml" />
 <mapping resource="mapeos/UnidadDeVenta.hbm.xml" />
+<mapping resource="mapeos/Plato.hbm.xml"/>
+<mapping resource="mapeos/Pedido.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>
