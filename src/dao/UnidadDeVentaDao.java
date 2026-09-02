@@ -124,7 +124,7 @@ public class UnidadDeVentaDao {
 			session.close();
 		}
 	}
-	public Pedido traer(int idPedido) {
+	public Pedido traerPedido(int idPedido) {
 		Pedido p = null;
 		try {
 			iniciaOperacion();
@@ -134,7 +134,17 @@ public class UnidadDeVentaDao {
 		}
 		return p;
 	}
-	public Plato traer(int idPlato) {
+	public Persona traerPersona(int idPersona) {
+		Persona p = null;
+		try {
+			iniciaOperacion();
+			p= (Persona) session.get(Persona.class, idPersona);
+		} finally {
+			session.close();
+		}
+		return p;
+	}
+	public Plato traerPlato(int idPlato) {
 		Plats p = null;
 		try {
 			iniciaOperacion();
@@ -144,19 +154,7 @@ public class UnidadDeVentaDao {
 		}
 		return p;
 	}
-	public Persona traer(String nombre) {
-	    Persona p = null;
-	    try {
-	        iniciaOperacion();
-	        String hql = "from Persona p where p.nombre = :nombre";
-	        p = (Persona) session.createQuery(hql)
-	                             .setParameter("nombre", nombre)
-	                             .uniqueResult();
-	    } finally {
-	        if (session != null) session.close();
-	    }
-	    return p;
-	}
+
     public UnidadDeVenta traerUnidadDeVentaYPersonal(int idUnidadDeVenta) {
         UnidadDeVenta objeto = null;
         Session session = HibernateUtil.getSessionFactory().openSession();

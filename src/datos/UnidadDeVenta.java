@@ -10,7 +10,9 @@ public class UnidadDeVenta {
 	protected double superficie;
 	protected String codigoUnico;
 	protected Set<Persona> personal;
-	
+	protected Set<Plato> platos;
+	protected Set<Pedidos> pedido;
+
 	
 	public UnidadDeVenta () {
 	}
