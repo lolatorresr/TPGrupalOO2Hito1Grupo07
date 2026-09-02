@@ -2,6 +2,10 @@ package datos;
 
 import java.util.HashSet;
 import java.util.Set;
+import datos.ItemPlato;
+import java.util.Map;
+import java.util.HashMap;
+import java.time.LocalDate;
 
 public class UnidadDeVenta {
 	protected int idUnidadDeVenta;
@@ -73,7 +77,71 @@ public class UnidadDeVenta {
 	public void setPersonal(Set<Persona> personal) {
 		this.personal = personal;
 	}
+<<<<<<< Updated upstream
+=======
+	
 
+	public Set<Plato> getPlatos() {
+		return platos;
+	}
+
+	public void setPlatos(Set<Plato> platos) {
+		this.platos = platos;
+	}
+
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	public double calcularRecaudacionTotal() {
+	    double total = 0.0;
+	    if (this.pedidos != null) {
+	        for (Pedido p : this.pedidos) {
+	            if (p.getItemPlatos() != null) {
+	            	total += p.getItemPlatos().getSubTotal();
+	            }
+	        }
+	    }
+	    return total;
+	}
+	public int calcularCantidadDePlato(Plato plato) {
+	    int total = 0;
+	    if (this.pedidos != null && plato != null) {
+	        for (Pedido p : this.pedidos) {
+	            if (p.getItemPlatos() != null && plato.equals(p.getItemPlatos().getPlato())) {
+	                total += p.getItemPlatos().getCantidad();
+	            }
+	        }
+	    }
+	    return total;
+	}
+	public Plato traerPlatoMasPedido() {
+	    Plato masPedido = null;
+	    int maxCantidad = 0;
+>>>>>>> Stashed changes
+
+	    if (this.pedidos != null) {
+	        for (Pedido p : this.pedidos) {
+	            if (p.getItemPlatos() != null && p.getItemPlatos().getPlato() != null) {
+	                Plato platoActual = p.getItemPlatos().getPlato();
+	                int cantidadActual = this.calcularCantidadDePlato(platoActual);
+
+	                if (cantidadActual > maxCantidad) {
+	                    maxCantidad = cantidadActual;
+	                    masPedido = platoActual;
+	                }
+	            }
+	        }
+	    }
+
+	    return masPedido;
+	}
+	public int getCantidadPedidos() {
+	    return this.pedidos.size();
+	}
 	@Override
 	public String toString() {
 		return "UnidadDeVenta [idUnidadDeVenta=" + idUnidadDeVenta + ", nombreComercial=" + nombreComercial

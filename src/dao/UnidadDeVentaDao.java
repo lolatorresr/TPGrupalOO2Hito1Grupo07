@@ -8,8 +8,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import datos.Persona;
 import datos.UnidadDeVenta;
+import datos.Pedido;
+import datos.Plato;
 
 public class UnidadDeVentaDao {
+
 	private static Session session;
 	private Transaction tx;
 	private void iniciaOperacion() throws HibernateException {
@@ -34,8 +37,68 @@ public class UnidadDeVentaDao {
 		}
 		return id;
 	}
+<<<<<<< Updated upstream
 	
 	public UnidadDeVenta traer(int idUnidadDeVenta) {
+=======
+    public void agregarPersonal(UnidadDeVenta unidad, Persona persona) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+
+            UnidadDeVenta u = (UnidadDeVenta) session.get(UnidadDeVenta.class, unidad.getIdUnidadDeVenta());
+            Hibernate.initialize(u.getPersonal());
+            
+            u.getPersonal().add(persona);
+            
+            session.update(u);
+
+            tx.commit();
+        } catch (HibernateException he) {
+            if (tx != null) tx.rollback();
+            throw he;
+        } finally {
+            session.close();
+        }
+    }
+    public void agregarPlato(UnidadDeVenta unidad, Plato plato) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            UnidadDeVenta u = (UnidadDeVenta) session.get(UnidadDeVenta.class, unidad.getIdUnidadDeVenta());
+            Hibernate.initialize(u.getPlatos());
+            u.getPlatos().add(plato);
+            session.update(u);
+            tx.commit();
+        } catch (HibernateException he) {
+            if (tx != null) tx.rollback();
+            throw he;
+        } finally {
+            session.close();
+        }
+    }
+
+    public void agregarPedido(UnidadDeVenta unidad, Pedido pedido) throws HibernateException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            UnidadDeVenta u = (UnidadDeVenta) session.get(UnidadDeVenta.class, unidad.getIdUnidadDeVenta());
+            Hibernate.initialize(u.getPedidos());
+            u.getPedidos().add(pedido);
+            session.update(u);
+            tx.commit();
+        } catch (HibernateException he) {
+            if (tx != null) tx.rollback();
+            throw he;
+        } finally {
+            session.close();
+        }
+    }
+	public UnidadDeVenta traerUnidadVenta(int idUnidadDeVenta) {
+>>>>>>> Stashed changes
 		UnidadDeVenta p = null;
 		try {
 			iniciaOperacion();
@@ -194,6 +257,76 @@ public class UnidadDeVentaDao {
         }
         return objeto;
     }
+<<<<<<< Updated upstream
+=======
+    public UnidadDeVenta traerUnidadVentaCompleta(int idUnidadDeVenta) throws HibernateException {
+        UnidadDeVenta uv = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "select distinct u from UnidadDeVenta u "
+                       + "left join fetch u.pedidos p "
+                       + "left join fetch p.itemPlato ip "
+                       + "left join fetch ip.plato "
+                       + "where u.idUnidadDeVenta = :id";
+            uv = (UnidadDeVenta) session.createQuery(hql)
+                                       .setParameter("id", idUnidadDeVenta)
+                                       .uniqueResult();
+        } catch (HibernateException he) {
+            throw he;
+        } finally {
+            session.close();
+        }
+        return uv;
+    }
+    //trae la unidad de venta con mayor superficie
+
+    @SuppressWarnings("unchecked")
+    public List<UnidadDeVenta> traerUnidadVentaMayorSuperficie(double superficie) throws HibernateException {
+        List<UnidadDeVenta> lista = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "from UnidadDeVenta u where u.superficie > :superficie";
+            lista = session.createQuery(hql)
+                           .setParameter("superficie", superficie)
+                           .list();
+        } catch (HibernateException he) {
+            throw he;
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    //trae la unidad de venta con mayor cantidad de pedidos 
+    @SuppressWarnings("unchecked")
+    public UnidadDeVenta traerUnidadDeVentaMayorPedidos() throws HibernateException {
+        UnidadDeVenta resultado = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            String hql = "select distinct u from UnidadDeVenta u "
+                       + "left join fetch u.pedidos p "
+                       + "left join fetch p.itemsPlato";
+            List<UnidadDeVenta> lista = session.createQuery(hql).list();
+
+            int maxPedidos = -1;
+            for (UnidadDeVenta uv : lista) {
+            	
+                int cantidad = uv.getCantidadPedidos();
+                
+                if (cantidad > maxPedidos) {
+                    maxPedidos = cantidad;
+                    resultado = uv;
+                }
+            }
+        } catch (HibernateException he) {
+            throw he;
+        } finally {
+            session.close();
+        }
+        return resultado;
+    }
+
+    //----METODOS PUESTO DESARMABLE----
+>>>>>>> Stashed changes
     
     
     public void agregar(UnidadDeVenta unidad, Persona persona) throws HibernateException {
