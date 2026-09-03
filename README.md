@@ -52,6 +52,17 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | traerPedidos | Lola Torres Rodriguez |
 | actualizarPedido | Lola Torres Rodriguez |
 | eliminarPedido | Lola Torres Rodriguez |
+| **traerPlatosPrecioMenorA** | Lola Torres Rodriguez |
+| **traerPedidosEntreFechas** | Lola Torres Rodriguez |
+| **traerPedidoConDetalle** | Lola Torres Rodriguez |
+| **traerPedidosPorUnidadDeVenta** | Lola Torres Rodriguez |
+| agregarCocinero | Lucia Daniela Ruiz |
+| traerCocinero | Lucia Daniela Ruiz |
+| traerCocineros | Lucia Daniela Ruiz |
+| **traerCocinerosDeUnidadDeVenta** | Lucia Daniela Ruiz |
+| **traerCocineroMasAntiguo** | Lucia Daniela Ruiz |
+| **traerCocinerosPorEspecialidad** | Lucia Daniela Ruiz |
+
 
 
 
