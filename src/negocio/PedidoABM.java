@@ -12,8 +12,8 @@ import datos.UnidadDeVenta;
 public class PedidoABM {
 	PedidoDao dao = new PedidoDao();
 	
-	public int agregarPedido (LocalDate fechaTransaccion, Festival festival, UnidadDeVenta unidadVenta, ItemPlato itemPlatos){
-		Pedido p= new Pedido(fechaTransaccion, festival, unidadVenta, itemPlatos);
+	public int agregarPedido (LocalDate fechaTransaccion, Festival festival, UnidadDeVenta unidadVenta){
+		Pedido p= new Pedido(fechaTransaccion, festival, unidadVenta);
 		return dao.agregarPedido(p);
 	}
 	
