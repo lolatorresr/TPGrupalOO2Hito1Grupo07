@@ -62,6 +62,14 @@ public class UnidadDeVentaABM {
         }
         return dao.agregarUnidadVenta(ft);
     }
+    
+    public FoodTruck traerFoodTruckPorPatente(String patente) throws Exception {
+        FoodTruck f = dao.traerFoodTruckPorPatente(patente);
+        if (f == null) {
+            throw new Exception("Error: No se encontró ningún Food Truck registrado con la patente " + patente);
+        }
+        return f;
+    }
 
     public void eliminarFoodTruck(int idUnidadDeVenta) throws Exception {
         FoodTruck ft = dao.traerFoodTruck(idUnidadDeVenta);
