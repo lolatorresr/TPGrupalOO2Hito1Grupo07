@@ -12,3 +12,26 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | Juan Pablo Lombisano Bentos | @Juanplombisano |
 | Lucia Daniela Ruiz | @LDR16 |
 
+
+| Método | Responsable |
+| :--- | :--- |
+| agregarPersona | Lola Torres Rodriguez |
+| traerPersona | Lola Torres Rodriguez |
+| traerPersonas | Lola Torres Rodriguez |
+| actualizarPersona | Lola Torres Rodriguez |
+| eliminarPersona | Lola Torres Rodriguez |
+| traerCajeros | Lola Torres Rodriguez |
+| traerCajero | Lola Torres Rodriguez |
+| traerCajeroMayorRecaudacion | Lola Torres Rodriguez |
+| agregarUnidadVenta | Marco Pappalardo |
+| traerUnidadVenta | Marco Pappalardo |
+| traerPersonal | Marco Pappalardo |
+| actualizarUnidadVenta | Marco Pappalardo |
+| eliminarUnidadVenta | Marco Pappalardo |
+| traerUnidadDeVentaYPersonal | Marco Pappalardo |
+| traerUnidadDeVentaYPedido | Marco Pappalardo |
+| traerUnidadDeVentaYPlatos | Marco Pappalardo |
+
+
+
+
