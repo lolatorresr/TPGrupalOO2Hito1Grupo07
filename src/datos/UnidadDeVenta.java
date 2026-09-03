@@ -15,7 +15,7 @@ public class UnidadDeVenta {
 	protected String codigoUnico;
 	protected Set<Persona> personal;
 	protected Set<Plato> platos;
-	protected Set<Pedidos> pedido;
+	protected Set<Pedido> pedidos;
 
 	
 	public UnidadDeVenta () {
@@ -77,8 +77,6 @@ public class UnidadDeVenta {
 	public void setPersonal(Set<Persona> personal) {
 		this.personal = personal;
 	}
-<<<<<<< Updated upstream
-=======
 	
 
 	public Set<Plato> getPlatos() {
@@ -121,7 +119,6 @@ public class UnidadDeVenta {
 	public Plato traerPlatoMasPedido() {
 	    Plato masPedido = null;
 	    int maxCantidad = 0;
->>>>>>> Stashed changes
 
 	    if (this.pedidos != null) {
 	        for (Pedido p : this.pedidos) {

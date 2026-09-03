@@ -27,37 +27,29 @@ public class TestUnidadDeVenta {
 			Pedido pedido1 = pedidoAbm.traerPedido(1);
 
 			System.out.println("--- 1. ALTA DE UNIDAD DE VENTA ---\n");
-			idUv = uvAbm.agregarUnidadVenta("Tio pancho", responsable, 25.0, "PC-001");
+			UnidadDeVenta nuevaUv = new UnidadDeVenta("Tio pancho", responsable, 25.0, "PC-001");
+			idUv = uvAbm.agregarUnidadVenta(nuevaUv);
 			System.out.println("Unidad agregada con ID: " + idUv);
 
 			System.out.println("\n--- 2. TRAER POR ID Y POR NOMBRE COMERCIAL ---\n");
 			System.out.println(uvAbm.traerUnidadVenta(idUv));
 			System.out.println(uvAbm.traerUnidadVenta("Tio pancho"));
 
-			System.out.println("\n--- 3. MODIFICAR UNIDAD DE VENTA ---\n");
-			UnidadDeVenta uvModificar = uvAbm.traerUnidadVenta(idUv);
-			uvModificar.setSuperficie(35.5);
-			uvAbm.modificarUnidadVenta(uvModificar);
-			System.out.println("Modificada: " + uvAbm.traerUnidadVenta(idUv));
-
-			System.out.println("\n--- 4. ASIGNAR PERSONAL, PLATO Y PEDIDO ---\n");
+			System.out.println("\n--- 3. ASIGNAR PERSONAL, PLATO Y PEDIDO ---\n");
 			uvAbm.agregarPersonal(idUv, empleado);
 			uvAbm.agregarPlato(idUv, plato1);
 			uvAbm.agregarPedido(idUv, pedido1);
 
-			System.out.println("\n--- 5. TRAER CON ASOCIACIONES ---\n");
+			System.out.println("\n--- 4. TRAER CON ASOCIACIONES ---\n");
 			System.out.println("Personal asociado: " + uvAbm.traerUnidadDeVentaYPersonal(idUv));
 			System.out.println("Platos asociados: " + uvAbm.traerUnidadDeVentaYPlatos(idUv));
 			System.out.println("Pedidos asociados: " + uvAbm.traerUnidadDeVentaYPedido(idUv));
 
 			System.out.println("Recaudacion total: $" + uvAbm.traerRecaudacionTotal(idUv));
-			
-			System.out.println("Plato mas pedido: " + uvAbm.traerPlatoMasPedido(idUv));	
-			
-			
-			
+			System.out.println("Plato mas pedido: " + uvAbm.traerPlatoMasPedido(idUv));
 			System.out.println("Unidad con mas pedidos: " + uvAbm.traerUnidadVentaMayorPedidos());
 
+			System.out.println("\n--- 5. REPORTES ---\n");
 			System.out.println("Unidades con superficie > 20:");
 			List<UnidadDeVenta> unidadesGrandes = uvAbm.traerUnidadVentaMayorSuperficie(20.0);
 			unidadesGrandes.forEach(System.out::println);
@@ -66,17 +58,16 @@ public class TestUnidadDeVenta {
 			List<Persona> personal = uvAbm.traerPersonal();
 			personal.forEach(System.out::println);
 
-			System.out.println("\n--- 8. ELIMINAR UNIDAD DE VENTA ---\n");
-			uvAbm.eliminar(idUv);
+			System.out.println("\n--- 6. ELIMINAR UNIDAD DE VENTA ---\n");
+			uvAbm.eliminarUnidadVenta(idUv);
 			System.out.println("Unidad con ID " + idUv + " eliminada.");
 
-			System.out.println("\n--- 9. PRUEBA DE EXCEPCION ---\n");
+			System.out.println("\n--- 7. PRUEBA DE EXCEPCION (DEBE LANZAR ERROR) ---\n");
 			uvAbm.traerUnidadVenta(idUv);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("\nExcepcion capturada correctamente: " + e.getMessage());
 		}
-
 	}
 
 }

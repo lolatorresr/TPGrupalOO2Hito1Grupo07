@@ -6,6 +6,8 @@ import dao.UnidadDeVentaDao;
 import datos.UnidadDeVenta;
 import datos.Persona;
 import datos.Plato;
+import datos.PuestoDesarmable;
+import datos.FoodTruck;
 import datos.Pedido;
 
 public class UnidadDeVentaABM {
@@ -23,20 +25,96 @@ public class UnidadDeVentaABM {
         }
         return instancia;
     }
-<<<<<<< Updated upstream
-
-=======
     
-  //--------METODOS UNIDAD DE VENTA--------
+  //--------ABM UNIDAD DE VENTA--------
     
-    public int agregarUnidadVenta(String nombreComercial, Persona responsable, double superficie,
-			String codigoUnico) throws Exception {
-        if (dao.traerUnidadVenta(nombreComercial) != null) {
-            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
+    public int agregarUnidadVenta(UnidadDeVenta uv) throws Exception {
+        if (dao.traerUnidadVenta(uv.getNombreComercial()) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + uv.getNombreComercial());
         }
-        UnidadDeVenta uv = new UnidadDeVenta();
         return dao.agregarUnidadVenta(uv);
     }
+
+    public void modificarUnidadVenta(UnidadDeVenta uv) throws Exception {
+        UnidadDeVenta existente = dao.traerUnidadVenta(uv.getIdUnidadDeVenta());
+        if (existente == null) {
+            throw new Exception("Error: No se puede modificar. La Unidad de Venta no existe.");
+        }
+        dao.actualizarUnidadVenta(uv);
+    }
+
+    public void eliminarUnidadVenta(int idUnidadDeVenta) throws Exception {
+        UnidadDeVenta u = dao.traerUnidadVenta(idUnidadDeVenta);
+        if (u == null) {
+            throw new Exception("Error: No se puede eliminar. La Unidad de Venta no existe.");
+        }
+        dao.eliminarUnidadVenta(u);
+    }
+    
+    //----METODOS FOODTRUCK----
+    
+    public int agregarFoodTruck(FoodTruck ft) throws Exception {
+        if (dao.traerUnidadVenta(ft.getNombreComercial()) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + ft.getNombreComercial());
+        }
+        if (dao.traerFoodTruckPorPatente(ft.getPatente()) != null) {
+            throw new Exception("Error: Ya existe un Food Truck registrado con la patente " + ft.getPatente());
+        }
+        return dao.agregarUnidadVenta(ft);
+    }
+
+    public void eliminarFoodTruck(int idUnidadDeVenta) throws Exception {
+        FoodTruck ft = dao.traerFoodTruck(idUnidadDeVenta);
+        if (ft == null) {
+            throw new Exception("Error: No se puede eliminar. El Food Truck no existe.");
+        }
+        dao.eliminarUnidadVenta(ft);
+    }
+    
+    public FoodTruck traerFoodTruck(int idUnidadDeVenta) throws Exception {
+        FoodTruck f = dao.traerFoodTruck(idUnidadDeVenta);
+        if (f == null) {
+            throw new Exception("Error: No existe el Food Truck con ID " + idUnidadDeVenta);
+        }
+        return f;
+    }
+
+    public List<FoodTruck> traerFoodTrucks() {
+        return dao.traerFoodTrucks();
+    }
+    
+    //----METODOS PUESTO DESARMABLE----
+    
+    public int agregarPuestoDesarmable(PuestoDesarmable pd) throws Exception {
+        if (dao.traerUnidadVenta(pd.getNombreComercial()) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + pd.getNombreComercial());
+        }
+        return dao.agregarUnidadVenta(pd);
+    }
+
+
+    public void eliminarPuestoDesarmable(int idUnidadDeVenta) throws Exception {
+        PuestoDesarmable pd = dao.traerPuestoDesarmable(idUnidadDeVenta);
+        if (pd == null) {
+            throw new Exception("Error: No se puede eliminar. El Puesto Desarmable no existe.");
+        }
+        dao.eliminarUnidadVenta(pd);
+    }
+    
+    public PuestoDesarmable traerPuestoDesarmable(int idUnidadDeVenta) throws Exception {
+        PuestoDesarmable p = dao.traerPuestoDesarmable(idUnidadDeVenta);
+        if (p == null) {
+            throw new Exception("Error: No existe el Puesto Desarmable con ID " + idUnidadDeVenta);
+        }
+        return p;
+    }
+
+    public List<PuestoDesarmable> traerPuestosDesarmables() {
+        return dao.traerPuestosDesarmables();
+    }
+    
+    //---------------------------
+    
     public void agregarPersonal(int idUnidadDeVenta, Persona persona) throws Exception {
         UnidadDeVenta uv = dao.traerUnidadDeVentaYPersonal(idUnidadDeVenta);
         if (uv == null) {
@@ -53,6 +131,7 @@ public class UnidadDeVentaABM {
         
         dao.agregarPersonal(uv, persona);
     }
+    
     public void agregarPlato(int idUnidadDeVenta, Plato plato) throws Exception {
         UnidadDeVenta uv = dao.traerUnidadDeVentaYPlatos(idUnidadDeVenta);
         if (uv == null) {
@@ -80,26 +159,21 @@ public class UnidadDeVentaABM {
         }
         dao.agregarPedido(uv, pedido);
     }
-    public void modificarUnidadVenta(UnidadDeVenta uv) throws Exception {
-        UnidadDeVenta existente = dao.traerUnidadVenta(uv.getIdUnidadDeVenta());
-        if (existente == null) {
-            throw new Exception("Error: No se puede modificar. La Unidad de Venta no existe.");
-        }
-        dao.actualizarUnidadVenta(uv);
-    }
->>>>>>> Stashed changes
+    
+    
+    //----CONSULTAS----
 
 
-    public UnidadDeVenta traer(int idUnidadDeVenta) throws Exception {
-        UnidadDeVenta u = dao.traer(idUnidadDeVenta);
+    public UnidadDeVenta traerUnidadVenta(int idUnidadDeVenta) throws Exception {
+        UnidadDeVenta u = dao.traerUnidadVenta(idUnidadDeVenta);
         if (u == null) {
             throw new Exception("Error: No existe la Unidad de Venta con ID " + idUnidadDeVenta);
         }
         return u;
     }
 
-    public UnidadDeVenta traer(String nombreComercial) throws Exception {
-        UnidadDeVenta u = dao.traer(nombreComercial);
+    public UnidadDeVenta traerUnidadVenta(String nombreComercial) throws Exception {
+        UnidadDeVenta u = dao.traerUnidadVenta(nombreComercial);
         if (u == null) {
             throw new Exception("Error: No existe la Unidad de Venta con nombre comercial: " + nombreComercial);
         }
@@ -133,9 +207,11 @@ public class UnidadDeVentaABM {
     public List<UnidadDeVenta> traerUnidadVentaMayorSuperficie(double superficie) {
         return dao.traerUnidadVentaMayorSuperficie(superficie);
     }
+    
     public List<Persona> traerPersonal() {
         return dao.traerPersonal();
     }
+    
     public UnidadDeVenta traerUnidadVentaMayorPedidos() throws Exception {
         UnidadDeVenta uv = dao.traerUnidadDeVentaMayorPedidos();
         if (uv == null) {
@@ -144,96 +220,6 @@ public class UnidadDeVentaABM {
         return uv;
     }
 
-<<<<<<< Updated upstream
-  
-    public int agregar(UnidadDeVenta uv) throws Exception {
-        if (dao.traer(uv.getNombreComercial()) != null) {
-            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + uv.getNombreComercial());
-        }
-        return dao.agregar(uv);
-    }
-
-    public void modificar(UnidadDeVenta uv) throws Exception {
-        UnidadDeVenta existente = dao.traer(uv.getIdUnidadVenta());
-        if (existente == null) {
-            throw new Exception("Error: No se puede modificar. La Unidad de Venta no existe.");
-        }
-        dao.actualizar(uv);
-    }
-
-    public void eliminar(int idUnidadDeVenta) throws Exception {
-        UnidadDeVenta u = dao.traer(idUnidadDeVenta);
-        if (u == null) {
-            throw new Exception("Error: No se puede eliminar. La Unidad de Venta no existe.");
-        }
-        dao.eliminar(u);
-    }
-
-
-    public void agregarPersonal(int idUnidadDeVenta, Persona persona) throws Exception {
-        UnidadDeVenta u = dao.traerUnidadDeVentaYPersonal(idUnidadDeVenta);
-        if (u == null) {
-            throw new Exception("Error: No existe la Unidad de Venta con ID " + idUnidadDeVenta);
-        }
-        if (persona == null) {
-            throw new Exception("Error: La Persona no puede ser nula.");
-        }
-        if (u.getPersonal().contains(persona)) {
-            throw new Exception("Error: La persona ya está asignada a esta Unidad de Venta.");
-        }
-        dao.agregar(u, persona);
-    }
-
-    public void agregarPlato(int idUnidadDeVenta, Plato plato) throws Exception {
-        UnidadDeVenta u = dao.traerUnidadDeVentaYPlatos(idUnidadDeVenta);
-        if (u == null) {
-            throw new Exception("Error: No existe la Unidad de Venta con ID " + idUnidadDeVenta);
-        }
-        if (plato == null) {
-            throw new Exception("Error: El Plato no puede ser nulo.");
-        }
-        if (u.getPlatos().contains(plato)) {
-            throw new Exception("Error: El plato ya existe en el menú de esta Unidad de Venta.");
-        }
-        dao.agregar(u, plato);
-    }
-
-    public void agregarPedido(int idUnidadDeVenta, Pedido pedido) throws Exception {
-        UnidadDeVenta u = dao.traerUnidadDeVentaYPedido(idUnidadDeVenta);
-        if (u == null) {
-            throw new Exception("Error: No existe la Unidad de Venta con ID " + idUnidadDeVenta);
-        }
-        if (pedido == null) {
-            throw new Exception("Error: El Pedido no puede ser nulo.");
-        }
-        dao.agregar(u, pedido);
-    }
-
-
-    public Persona traerPersona(int idPersona) throws Exception {
-        Persona p = dao.traerPersona(idPersona);
-        if (p == null) {
-            throw new Exception("Error: No existe la Persona con id: " + idPersona);
-        }
-        return p;
-    }
-
-    public Plato traerPlato(int idPlato) throws Exception {
-        Plato p = dao.traerPlato(idPlato);
-        if (p == null) {
-            throw new Exception("Error: No existe el Plato con ID: " + idPlato);
-        }
-        return p;
-    }
-
-    public Pedido traerPedido(int idPedido) throws Exception {
-        Pedido p = dao.traer(idPedido);
-        if (p == null) {
-            throw new Exception("Error: No existe el Pedido con ID: " + idPedido);
-        }
-        return p;
-    }
-=======
     public double traerRecaudacionTotal(int idUnidadDeVenta) throws Exception {
         UnidadDeVenta uv = dao.traerUnidadDeVentaYPedido(idUnidadDeVenta);
         if (uv == null) {
@@ -253,5 +239,30 @@ public class UnidadDeVentaABM {
         return p;
     }
     
->>>>>>> Stashed changes
+    
+    //-----------------------
+    
+    public Persona traerPersona(int idPersona) throws Exception {
+        Persona p = dao.traerPersona(idPersona);
+        if (p == null) {
+            throw new Exception("Error: No existe la Persona con id: " + idPersona);
+        }
+        return p;
+    }
+
+    public Plato traerPlato(int idPlato) throws Exception {
+        Plato p = dao.traerPlato(idPlato);
+        if (p == null) {
+            throw new Exception("Error: No existe el Plato con ID: " + idPlato);
+        }
+        return p;
+    }
+
+    public Pedido traerPedido(int idPedido) throws Exception {
+        Pedido p = dao.traerPedido(idPedido);
+        if (p == null) {
+            throw new Exception("Error: No existe el Pedido con ID: " + idPedido);
+        }
+        return p;
+    }
 }

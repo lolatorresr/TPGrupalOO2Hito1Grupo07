@@ -16,18 +16,18 @@
 		<many-to-one name="responsable" class="datos.Persona" column="responsable" />
 		
 		<set name="personal" table="personal" inverse="true"
-			lazy="true" fetch="select">
+			lazy="false" fetch="select">
 		<key column="idUnidadDeVenta" not-null="true" />
 		<one-to-many class="datos.Persona" />
 		</set>
 		
 		<set name="pedidos" table="pedidos" inverse="true"
-			lazy="true" fetch="select">
+			lazy="false" fetch="select">
 		<key column="idUnidadDeVenta" not-null="true" />
 		<one-to-many class="datos.Pedido" />
 		</set>
 		<set name="platos" table="platos" inverse="true"
-			lazy="true" fetch="select">
+			lazy="false" fetch="select">
 		<key column="idUnidadDeVenta" not-null="false" />
 		<one-to-many class="datos.Plato" />
 		</set>

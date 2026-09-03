@@ -10,9 +10,9 @@
 		</id>
 
 		<property column="fechaTransaccion" name="fechaTransaccion" type="date" />
-		<many-to-one name="festival" class="datos.Festival" column="idFestival" not-null="true" />
+		<!--<many-to-one name="festival" class="datos.Festival" column="idFestival" not-null="true" />-->
 		<many-to-one name="unidadVenta" class="datos.UnidadDeVenta" column="idUnidadDeVenta" not-null="true" />
-		<many-to-one name="itemPlatos" class="datos.ItemPlato" column="idItemPlato" not-null="true" />
+		<!--<many-to-one name="itemPlatos" class="datos.ItemPlato" column="idItemPlato" not-null="true" />-->
 
 	</class>
 </hibernate-mapping>
