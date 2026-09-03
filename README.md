@@ -20,17 +20,41 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | traerPersonas | Lola Torres Rodriguez |
 | actualizarPersona | Lola Torres Rodriguez |
 | eliminarPersona | Lola Torres Rodriguez |
-| traerCajeros | Lola Torres Rodriguez |
-| traerCajero | Lola Torres Rodriguez |
-| traerCajeroMayorRecaudacion | Lola Torres Rodriguez |
+| **traerCajeros** | Lola Torres Rodriguez |
+| **traerCajero** | Lola Torres Rodriguez |
+| **traerCajeroMayorRecaudacion** | Lola Torres Rodriguez |
 | agregarUnidadVenta | Marco Pappalardo |
 | traerUnidadVenta | Marco Pappalardo |
 | traerPersonal | Marco Pappalardo |
 | actualizarUnidadVenta | Marco Pappalardo |
 | eliminarUnidadVenta | Marco Pappalardo |
-| traerUnidadDeVentaYPersonal | Marco Pappalardo |
-| traerUnidadDeVentaYPedido | Marco Pappalardo |
-| traerUnidadDeVentaYPlatos | Marco Pappalardo |
+| **traerUnidadDeVentaYPersonal** | Marco Pappalardo |
+| **traerUnidadDeVentaYPedido** | Marco Pappalardo |
+| **traerUnidadDeVentaYPlatos** | Marco Pappalardo |
+| **traerUnidadVentaCompleta** | Marco Pappalardo |
+| **traerUnidadVentaMayorSuperficie** | Marco Pappalardo |
+| **traerUnidadVentaMayorPedidos** | Marco Pappalardo |
+| **traerFoodTruck** | Juan Pablo Lombisano Bentos |
+| **traerFoodTrucks** | Juan Pablo Lombisano Bentos |
+| **traerFoodTruckPorPatente** | Lola Torres Rodriguez |
+| **traerPuestoDesarmable** | Juan Pablo Lombisano Bentos |
+| **traerPuestosDesarmables** | Juan Pablo Lombisano Bentos | 
+| agregarPersonal | Marco Pappalardo |
+| agregarPedido | Marco Pappalardo |
+| traerPersonal | Lola Torres Rodriguez | 
+| agregarPlato | Lola Torres Rodriguez |
+| traerPlato | Lola Torres Rodriguez |
+| traerPlatos | Lola Torres Rodriguez |
+| actualizarPlato | Lola Torres Rodriguez |
+| eliminarPlato | Lola Torres Rodriguez |
+| agregarPedido | Lola Torres Rodriguez |
+| traerPedido | Lola Torres Rodriguez |
+| traerPedidos | Lola Torres Rodriguez |
+| actualizarPedido | Lola Torres Rodriguez |
+| eliminarPedido | Lola Torres Rodriguez |
+
+
+
 
 
 
