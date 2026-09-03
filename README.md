@@ -12,22 +12,12 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | Juan Pablo Lombisano Bentos | @Juanplombisano |
 | Lucia Daniela Ruiz | @LDR16 |
 
-
+## Consultas a BDD (Hito 1)
 | Método | Responsable |
 | :--- | :--- |
-| agregarPersona | Lola Torres Rodriguez |
-| traerPersona | Lola Torres Rodriguez |
-| traerPersonas | Lola Torres Rodriguez |
-| actualizarPersona | Lola Torres Rodriguez |
-| eliminarPersona | Lola Torres Rodriguez |
 | **traerCajeros** | Lola Torres Rodriguez |
 | **traerCajero** | Lola Torres Rodriguez |
 | **traerCajeroMayorRecaudacion** | Lola Torres Rodriguez |
-| agregarUnidadVenta | Marco Pappalardo |
-| traerUnidadVenta | Marco Pappalardo |
-| traerPersonal | Marco Pappalardo |
-| actualizarUnidadVenta | Marco Pappalardo |
-| eliminarUnidadVenta | Marco Pappalardo |
 | **traerUnidadDeVentaYPersonal** | Marco Pappalardo |
 | **traerUnidadDeVentaYPedido** | Marco Pappalardo |
 | **traerUnidadDeVentaYPlatos** | Marco Pappalardo |
@@ -39,6 +29,27 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | **traerFoodTruckPorPatente** | Lola Torres Rodriguez |
 | **traerPuestoDesarmable** | Juan Pablo Lombisano Bentos |
 | **traerPuestosDesarmables** | Juan Pablo Lombisano Bentos | 
+| **traerPlatosPrecioMenorA** | Lola Torres Rodriguez |
+| **traerPedidosEntreFechas** | Lola Torres Rodriguez |
+| **traerPedidoConDetalle** | Lola Torres Rodriguez |
+| **traerPedidosPorUnidadDeVenta** | Lola Torres Rodriguez |
+| **traerCocinerosDeUnidadDeVenta** | Lucia Daniela Ruiz |
+| **traerCocineroMasAntiguo** | Lucia Daniela Ruiz |
+| **traerCocinerosPorEspecialidad** | Lucia Daniela Ruiz |
+
+
+## CDU y ABM general
+| Método | Responsable |
+| :--- | :--- |
+| agregarPersona | Lola Torres Rodriguez |
+| traerPersona | Lola Torres Rodriguez |
+| traerPersonas | Lola Torres Rodriguez |
+| actualizarPersona | Lola Torres Rodriguez |
+| eliminarPersona | Lola Torres Rodriguez |
+| agregarUnidadVenta | Marco Pappalardo |
+| traerUnidadVenta | Marco Pappalardo |
+| actualizarUnidadVenta | Marco Pappalardo |
+| eliminarUnidadVenta | Marco Pappalardo |
 | agregarPersonal | Marco Pappalardo |
 | agregarPedido | Marco Pappalardo |
 | traerPersonal | Lola Torres Rodriguez | 
@@ -47,21 +58,13 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | traerPlatos | Lola Torres Rodriguez |
 | actualizarPlato | Lola Torres Rodriguez |
 | eliminarPlato | Lola Torres Rodriguez |
-| agregarPedido | Lola Torres Rodriguez |
 | traerPedido | Lola Torres Rodriguez |
 | traerPedidos | Lola Torres Rodriguez |
 | actualizarPedido | Lola Torres Rodriguez |
 | eliminarPedido | Lola Torres Rodriguez |
-| **traerPlatosPrecioMenorA** | Lola Torres Rodriguez |
-| **traerPedidosEntreFechas** | Lola Torres Rodriguez |
-| **traerPedidoConDetalle** | Lola Torres Rodriguez |
-| **traerPedidosPorUnidadDeVenta** | Lola Torres Rodriguez |
 | agregarCocinero | Lucia Daniela Ruiz |
 | traerCocinero | Lucia Daniela Ruiz |
 | traerCocineros | Lucia Daniela Ruiz |
-| **traerCocinerosDeUnidadDeVenta** | Lucia Daniela Ruiz |
-| **traerCocineroMasAntiguo** | Lucia Daniela Ruiz |
-| **traerCocinerosPorEspecialidad** | Lucia Daniela Ruiz |
 
 
 
