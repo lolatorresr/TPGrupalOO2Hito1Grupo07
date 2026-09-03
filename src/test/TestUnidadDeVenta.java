@@ -45,10 +45,10 @@ public class TestUnidadDeVenta {
 			System.out.println("Platos asociados: " + uvAbm.traerUnidadDeVentaYPlatos(idUv));
 			System.out.println("Pedidos asociados: " + uvAbm.traerUnidadDeVentaYPedido(idUv));
 
-			System.out.println("Recaudacion total: $" + uvAbm.traerRecaudacionTotal(idUv));
+			/*System.out.println("Recaudacion total: $" + uvAbm.traerRecaudacionTotal(idUv));
 			System.out.println("Plato mas pedido: " + uvAbm.traerPlatoMasPedido(idUv));
 			System.out.println("Unidad con mas pedidos: " + uvAbm.traerUnidadVentaMayorPedidos());
-
+			*/
 			System.out.println("\n--- 5. REPORTES ---\n");
 			System.out.println("Unidades con superficie > 20:");
 			List<UnidadDeVenta> unidadesGrandes = uvAbm.traerUnidadVentaMayorSuperficie(20.0);

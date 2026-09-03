@@ -1,6 +1,8 @@
 package datos;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Festival {
 	private int idFestival;
@@ -8,18 +10,17 @@ public class Festival {
 	private String temporada;
 	private LocalDate fechaInicio;
 	private LocalDate fechaFin;
-	private UnidadDeVenta unidades;
+	private Set<UnidadDeVenta> unidades;
 	
 	public Festival() {
 	}
 
-	public Festival(String nombre, String temporada, LocalDate fechaInicio, LocalDate fechaFin,
-			UnidadDeVenta unidades) {
+	public Festival(String nombre, String temporada, LocalDate fechaInicio, LocalDate fechaFin) {
 		this.nombre = nombre;
 		this.temporada = temporada;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		this.unidades = unidades;
+		this.unidades = new HashSet<UnidadDeVenta>();
 	}
 
 	public int getIdFestival() {
@@ -62,11 +63,11 @@ public class Festival {
 		this.fechaFin = fechaFin;
 	}
 
-	public UnidadDeVenta getUnidades() {
+	public Set<UnidadDeVenta> getUnidades() {
 		return unidades;
 	}
 
-	public void setUnidades(UnidadDeVenta unidades) {
+	public void setUnidades(Set<UnidadDeVenta> unidades) {
 		this.unidades = unidades;
 	}
 
