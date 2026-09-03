@@ -42,5 +42,14 @@ public class PlatoABM {
 		}
 		dao.eliminarPlato(p);
 	}
+	
+	//----consultas----
+	public List<Plato> traerPlatosPrecioMenorA(double precioMax) throws Exception{
+		if(precioMax <= 0) {
+			throw new Exception("ERROR: El precio debe ser mayor a 0.");
+		}
+		return dao.traerPlatosPrecioMenorA(precioMax);
+	}
+	
 
 }

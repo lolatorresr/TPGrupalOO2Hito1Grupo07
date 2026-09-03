@@ -95,6 +95,7 @@ public class PersonaDao {
 	}
 	
 	
+	
 	//CONSULTAS DE CAJERO
 	//traer lista de cajeros
 	public List<Cajero> traerCajeros(){

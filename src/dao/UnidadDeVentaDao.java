@@ -92,6 +92,7 @@ public class UnidadDeVentaDao {
 	
 	
 	//----METODOS FOODTRUCK----
+	
 	public FoodTruck traerFoodTruck(int idUnidadDeVenta) {
         FoodTruck f = null;
         try {

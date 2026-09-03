@@ -32,6 +32,19 @@
 		<one-to-many class="datos.Plato" />
 		</set>
 
+		<!-- Subclase PuestoDesarmable -->
+		<joined-subclass name="datos.PuestoDesarmable" table="puesto_desarmable">
+			<key column="idUnidadDeVenta"/>
+			<property name="cantidadCarpas" column="cantidadCarpas" type="int"/>
+			<property name="tiempoMontaje" column="tiempoMontaje" type="int"/>
+		</joined-subclass>
+
+		<!-- Subclase FoodTruck -->
+		<joined-subclass name="datos.FoodTruck" table="food_truck">
+			<key column="idUnidadDeVenta"/>
+			<property name="patente" column="patente" type="string"/>
+			<property name="conexionElectrica" column="conexionElectrica" type="boolean"/>
+		</joined-subclass>
 </class>
 </hibernate-mapping>
 

@@ -91,4 +91,21 @@ public class PlatoDao {
 			session.close();
 		}
 	}
+	
+	//traer platos con precio menor a
+	public List<Plato> traerPlatosPrecioMenorA(double precioMax){
+		List<Plato> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Plato p where p.precio <= :precio "
+					+ "order by p.precio asc", Plato.class)
+					.setParameter("precio", precioMax)
+					.getResultList();
+		} finally {
+			if(session != null) session.close();
+		}
+		return lista;
+	}
+	
+	
 }

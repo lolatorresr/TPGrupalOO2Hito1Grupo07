@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -79,4 +80,55 @@ public class PedidoDao {
 			session.close();
 		}
 	}
+	
+	//traer pedidos en rango de fechas
+	public List<Pedido> traerPedidosEntreFechas(LocalDate desde, LocalDate hasta){
+		List<Pedido> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("from Pedido p where p.fecha between :desde and :hasta"
+					+ "order by p.fecha desc", Pedido.class)
+					.setParameter("desde", desde)
+					.setParameter("hasta", hasta)
+					.getResultList();
+		} finally {
+			if(session != null) session.close();
+		}
+		return lista;
+	}
+	
+	//traer pedido join items y platos
+	public Pedido traerPedidoConDetalle(int idPedido) {
+		Pedido p=null;
+		try {
+			iniciaOperacion();
+			p = (Pedido) session.createQuery("select distinct p from Pedido p"
+					+ "left join fetch p.itemPlato ip"
+					+ "left join fetch ip.plato"
+					+ "where p.idPedido = :idPedido")
+					.setParameter("idPedido", idPedido)
+					.uniqueResult();
+		}finally {
+			if(session != null) session.close();
+		}
+		return p;
+	}
+	
+	
+	//traer pedidos x unidad de venta
+	public List<Pedido> traerPedidosPorUnidadDeVenta(int idUnidadDeVenta){
+		List<Pedido> lista = null;
+		try {
+			iniciaOperacion();
+			lista= session.createQuery("select p from UnidadDeVenta uv"
+					+ "join uv.pedidos p"
+					+ "where uv.idUnidadDeVenta = :id", Pedido.class)
+					.setParameter("id", idUnidadDeVenta)
+					.getResultList();
+		} finally {
+			if(session != null) session.close();
+		}
+		return lista;
+	}
+	
 }

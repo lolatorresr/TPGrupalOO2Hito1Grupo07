@@ -39,5 +39,36 @@ public class PedidoABM {
 		}
 		dao.eliminarPedido(p);
 	}
+	
+	//----CONSULTAS----
+	public List<Pedido> traerPedidosEntreFechas(LocalDate desde, LocalDate hasta) throws Exception{
+		if(desde == null || hasta == null) {
+			throw new Exception("ERROR: Las fechas no pueden ser nulas");
+		}
+		if(desde.isAfter(hasta)) {
+			throw new Exception("ERROR: La fecha 'desde' no puede ser posterior a la fecha 'hasta'.");
+		}
+		return dao.traerPedidosEntreFechas(desde, hasta);
+	}
+	
+	public Pedido traerPedidoConDetalle(int idPedido) throws Exception{
+		Pedido p = dao.traerPedidoConDetalle(idPedido);
+		if(p == null) {
+			throw new Exception("ERROR: No existe el Pedido con ID: " + idPedido);
+		}
+		return p;
+	}
+	
+	public List<Pedido> traerPedidosPorUnidadDeVenta(int idUnidadDeVenta) throws Exception{
+		if(UnidadDeVentaABM.getInstancia().traerUnidadVenta(idUnidadDeVenta) == null) {
+			throw new Exception("ERROR: No existe la Unidad de Venta con ID: " + idUnidadDeVenta);
+		}
+		List<Pedido> lista = dao.traerPedidosPorUnidadDeVenta(idUnidadDeVenta);
+		
+		if(lista == null || lista.isEmpty()) {
+			throw new Exception("La Unidad de Venta con ID: " + idUnidadDeVenta + " no registra pedidos.");
+		}
+		return lista;
+	}
 
 }
