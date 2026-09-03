@@ -15,9 +15,9 @@
 		<property column="superficie" name="superficie" type="double" />
 		<many-to-one name="responsable" class="datos.Persona" column="responsable" />
 		
-		<set name="personal" table="personal" inverse="true"
+		<set name="personal" table="personal" inverse="false"
 			lazy="false" fetch="select">
-		<key column="idUnidadDeVenta" not-null="true" />
+		<key column="idUnidadDeVenta" not-null="false" />
 		<one-to-many class="datos.Persona" />
 		</set>
 		

@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.Cajero;
+import datos.Cocinero;
 import datos.Persona;
 
 
@@ -94,8 +95,7 @@ public class PersonaDao {
 	}
 	
 	
-	
-	
+	//CONSULTAS DE CAJERO
 	//traer lista de cajeros
 	public List<Cajero> traerCajeros(){
 		List<Cajero> lista = null;
@@ -131,6 +131,88 @@ public class PersonaDao {
 			session.close();
 		}
 		return c;
+	}
+
+	// CONSULTAS DE COCINERO 
+	//trae cocinero por id
+	public Cocinero traerCocinero(int idPersona) {
+		Cocinero c = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			c = (Cocinero) session.get(Cocinero.class, idPersona);
+		} finally {
+			session.close();
+		}
+		return c;
+	}
+
+	//trae lista de cocineros
+	@SuppressWarnings("unchecked")
+	public List<Cocinero> traerCocineros(){
+		List<Cocinero> lista = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			lista = session.createQuery("from Cocinero").getResultList();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	//trae los cocineros que forman parte del personal de una unidad de venta
+	@SuppressWarnings("unchecked")
+	public List<Cocinero> traerCocinerosDeUnidadDeVenta(int idUnidadDeVenta){
+		List<Cocinero> lista = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "select c from UnidadDeVenta u "
+					+ "join u.personal c "
+					+ "where u.idUnidadDeVenta = :id "
+					+ "and type(c) = Cocinero";
+			lista = session.createQuery(hql).setParameter("id", idUnidadDeVenta).getResultList();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	//trae el cocinero con mayor antiguedad de una unidad de venta
+	public Cocinero traerCocineroMasAntiguo(int idUnidadDeVenta) {
+		Cocinero c = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "select c from UnidadDeVenta u "
+					+ "join u.personal c "
+					+ "where u.idUnidadDeVenta = :id "
+					+ "and type(c) = Cocinero "
+					+ "order by c.fechaIngreso asc";
+			c = (Cocinero) session.createQuery(hql).setParameter("id", idUnidadDeVenta)
+					.setMaxResults(1).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return c;
+	}
+
+	//trae los cocineros de una unidad de venta filtrados por especialidad
+	@SuppressWarnings("unchecked")
+	public List<Cocinero> traerCocinerosPorEspecialidad(int idUnidadDeVenta, String especialidad){
+		List<Cocinero> lista = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "select c from UnidadDeVenta u "
+					+ "join u.personal c "
+					+ "where u.idUnidadDeVenta = :id "
+					+ "and type(c) = Cocinero "
+					+ "and c.especialidad = :especialidad";
+			lista = session.createQuery(hql)
+					.setParameter("id", idUnidadDeVenta)
+					.setParameter("especialidad", especialidad)
+					.getResultList();
+		} finally {
+			session.close();
+		}
+		return lista;
 	}
 
 }

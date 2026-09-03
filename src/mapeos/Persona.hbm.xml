@@ -24,6 +24,12 @@
 			<property name="recaudacionTotal" column="recaudacionTotal" type="double"/>
 		</joined-subclass>
 
+		<joined-subclass name="datos.Cocinero" table="cocinero">
+			<key column="idPersona"/>
+			<property name="especialidad" column="especialidad" type="string"/>
+			<property name="categoria" column="categoria" type="string"/>
+		</joined-subclass>
+
 
 </class>
 </hibernate-mapping>
