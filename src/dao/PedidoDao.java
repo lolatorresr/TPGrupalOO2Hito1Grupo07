@@ -86,8 +86,8 @@ public class PedidoDao {
 		List<Pedido> lista = null;
 		try {
 			iniciaOperacion();
-			lista = session.createQuery("from Pedido p where p.fecha between :desde and :hasta"
-					+ "order by p.fecha desc", Pedido.class)
+			lista = session.createQuery("from Pedido p where p.fechaTransaccion between :desde and :hasta "
+					+ "order by p.fechaTransaccion desc", Pedido.class)
 					.setParameter("desde", desde)
 					.setParameter("hasta", hasta)
 					.getResultList();
@@ -102,10 +102,10 @@ public class PedidoDao {
 		Pedido p=null;
 		try {
 			iniciaOperacion();
-			p = (Pedido) session.createQuery("select distinct p from Pedido p"
-					+ "left join fetch p.itemPlato ip"
-					+ "left join fetch ip.plato"
-					+ "where p.idPedido = :idPedido")
+			p = session.createQuery("select distinct p from Pedido p "
+					+ "left join fetch p.itemPlatos ip "
+					+ "left join fetch ip.plato "
+					+ "where p.idPedido = :idPedido", Pedido.class)
 					.setParameter("idPedido", idPedido)
 					.uniqueResult();
 		}finally {
@@ -120,8 +120,8 @@ public class PedidoDao {
 		List<Pedido> lista = null;
 		try {
 			iniciaOperacion();
-			lista= session.createQuery("select p from UnidadDeVenta uv"
-					+ "join uv.pedidos p"
+			lista= session.createQuery("select p from UnidadDeVenta uv "
+					+ "join uv.pedidos p "
 					+ "where uv.idUnidadDeVenta = :id", Pedido.class)
 					.setParameter("id", idUnidadDeVenta)
 					.getResultList();
