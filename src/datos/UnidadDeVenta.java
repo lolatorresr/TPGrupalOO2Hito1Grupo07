@@ -153,9 +153,12 @@ public class UnidadDeVenta {
 	
 	@Override
 	public String toString() {
-		return "UnidadDeVenta [idUnidadDeVenta=" + idUnidadDeVenta + ", nombreComercial=" + nombreComercial
-				+ ", responsable=" + responsable + ", superficie=" + superficie + ", codigoUnico=" + codigoUnico
-				+ ", personal=" + personal + "]";
+	    return "UnidadDeVenta [idUnidadDeVenta=" + idUnidadDeVenta 
+	            + ", nombreComercial=" + nombreComercial 
+	            + ", codigoUnico=" + codigoUnico 
+	            + ", superficie=" + superficie 
+	            + ", idResponsable=" + (responsable != null ? responsable.getIdPersona() : "null") 
+	            + "]";
 	}
 	
 	

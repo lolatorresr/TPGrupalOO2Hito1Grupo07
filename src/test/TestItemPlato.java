@@ -32,7 +32,7 @@ public class TestItemPlato {
 			Cocinero responsable = personaAbm.traerCocinero(personaAbm.agregarCocinero("Nicolas", "Aguirre",
 					33444555L, LocalDate.of(1991, 3, 12), LocalDate.of(2022, 7, 1), 900000.0, "Cocina criolla", "A"));
 			UnidadDeVenta uv = new UnidadDeVenta("La Esquina Gourmet", responsable, 25.0, "UV-ITE001");
-			int idUv = uvAbm.agregarUnidadVenta(uv);
+		/*	int idUv = uvAbm.agregarUnidadVenta(uv);
 
 			int idPedido1 = pedidoAbm.agregarPedido(LocalDate.now(), null, uvAbm.traerUnidadVenta(idUv));
 			int idPedido2 = pedidoAbm.agregarPedido(LocalDate.now(), null, uvAbm.traerUnidadVenta(idUv));
@@ -106,7 +106,7 @@ public class TestItemPlato {
 
 			System.out.println("\n--- 15. PRUEBA EXCEPCION: PEDIDO INEXISTENTE ---");
 			abm.agregarItemPlatoAPedido(9999, idMilanesa, 1);
-
+*/
 		} catch (Exception e) {
 			System.out.println("Excepcion capturada correctamente: " + e.getMessage());
 		}

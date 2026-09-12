@@ -50,6 +50,4 @@ public class PlatoABM {
 		}
 		return dao.traerPlatosPrecioMenorA(precioMax);
 	}
-	
-
 }

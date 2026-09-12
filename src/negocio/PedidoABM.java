@@ -17,7 +17,10 @@ public class PedidoABM {
 		return dao.agregarPedido(p);
 	}
 	
-	public Pedido traerPedido(int idPedido) {
+	public Pedido traerPedido(int idPedido) throws Exception {
+		if(dao.traerPedido(idPedido) == null) {
+			throw new Exception("ERROR: no existe un pedido con ID "+ idPedido);
+		}
 		return dao.traerPedido(idPedido);
 	}
 	
@@ -69,6 +72,10 @@ public class PedidoABM {
 			throw new Exception("La Unidad de Venta con ID: " + idUnidadDeVenta + " no registra pedidos.");
 		}
 		return lista;
+	}
+	
+	public List<Pedido> traerPedidosPorPlato(int idPlato){
+		return dao.traerPedidosPorPlato(idPlato);
 	}
 
 }

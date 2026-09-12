@@ -40,6 +40,9 @@ public class PedidoDao {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			p= (Pedido) session.get(Pedido.class, idPedido);
+			if (p != null && p.getUnidadVenta() != null) {
+	            org.hibernate.Hibernate.initialize(p.getUnidadVenta());
+	        }
 		} finally {
 			session.close();
 		}
@@ -122,10 +125,28 @@ public class PedidoDao {
 			iniciaOperacion();
 			lista= session.createQuery("select p from UnidadDeVenta uv "
 					+ "join uv.pedidos p "
+					+ "left join fetch p.itemPlatos ip "
+					+ "left join fetch ip.plato "
 					+ "where uv.idUnidadDeVenta = :id", Pedido.class)
 					.setParameter("id", idUnidadDeVenta)
 					.getResultList();
 		} finally {
+			if(session != null) session.close();
+		}
+		return lista;
+	}
+	
+	public List<Pedido> traerPedidosPorPlato(int idPlato){
+		List<Pedido> lista = null;
+		try {
+			iniciaOperacion();
+			lista = session.createQuery("select c from UnidadDeVenta uv "
+	                   + "inner join uv.personal c "
+	                   + "where c.turnoTrabajo = :turno "
+	                   + "and uv.idUnidadDeVenta = :idUV", Pedido.class)
+					.setParameter("idPlato", idPlato)
+					.getResultList();
+		}finally {
 			if(session != null) session.close();
 		}
 		return lista;

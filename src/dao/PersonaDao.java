@@ -126,12 +126,32 @@ public class PersonaDao {
 		Cajero c = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			c= (Cajero) session.createQuery("from Cajero c order by c.recaudacionTotal desc")
-					.setMaxResults(1).uniqueResult();
+			c= (Cajero) session.createQuery("from Cajero c where c.recaudacionTotal "
+					+ " = (select max(c2.recaudacionTotal) from Cajero c2)", Cajero.class)
+					.uniqueResult();
 		}finally {
 			session.close();
 		}
 		return c;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Cajero> traerCajerosPorTurnoYUv(String turno, int idUv){
+		List<Cajero> lista = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			lista = (List<Cajero>) session.createQuery("select c from UnidadDeVenta uv "
+	                   + "inner join uv.personal c "
+	                   + "where c.turnoTrabajo = :turno "
+	                   + "and uv.idUnidadDeVenta = :idUv")
+					.setParameter("turno", turno)
+					.setParameter("idUv", idUv)
+					.getResultList();
+			
+		}finally {
+			if(session != null) session.close();
+		}
+		return lista;
 	}
 
 	// CONSULTAS DE COCINERO 

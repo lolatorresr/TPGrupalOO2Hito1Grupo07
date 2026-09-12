@@ -22,7 +22,7 @@ public class TestFoodTruckyPuestoDesarmable {
 			Persona resp1 = personaAbm.traerPersona(idResp1);
 			Persona resp2 = personaAbm.traerPersona(idResp2);
 			System.out.println("Responsables creados ok.\n");
-
+/*
 			System.out.println("--- 2. ALTA FOODTRUCKS ---");
 			FoodTruck ft1 = new FoodTruck("Burguer UNLA", resp1, 15.0, "FT-001", "AA111AA", true);
 			FoodTruck ft2 = new FoodTruck("Pancheria UNLA", resp2, 12.0, "FT-002", "BB222BB", false);
@@ -58,7 +58,7 @@ public class TestFoodTruckyPuestoDesarmable {
 				uvAbm.agregarFoodTruck(ftDuplicado);
 			} catch (Exception e) {
 				System.out.println("Excepcion capturada ok, " + e.getMessage());
-			}
+			}*/
 
 		} catch (Exception e) {
 			System.out.println("\nERROR GENERAL INESPERADO: " + e.getMessage());

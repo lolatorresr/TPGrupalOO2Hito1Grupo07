@@ -12,7 +12,7 @@ jdbc:mysql://localhost/bd-epicentro-gourmet</property>
 <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 <property name="show_sql">false</property><!-- en true muestra hql en
 consola-->
-<property name="hbm2ddl.auto">create</property>
+<property name="hbm2ddl.auto">update</property>
 <mapping resource="mapeos/Persona.hbm.xml" />
 <mapping resource="mapeos/UnidadDeVenta.hbm.xml" />
 <mapping resource="mapeos/Plato.hbm.xml"/>

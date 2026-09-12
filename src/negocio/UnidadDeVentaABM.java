@@ -15,7 +15,7 @@ public class UnidadDeVentaABM {
     private static UnidadDeVentaABM instancia;
     private UnidadDeVentaDao dao;
 
-    private UnidadDeVentaABM() {
+    public UnidadDeVentaABM() {
         this.dao = new UnidadDeVentaDao();
     }
 
@@ -28,10 +28,13 @@ public class UnidadDeVentaABM {
     
   //--------ABM UNIDAD DE VENTA--------
     
-    public int agregarUnidadVenta(UnidadDeVenta uv) throws Exception {
-        if (dao.traerUnidadVenta(uv.getNombreComercial()) != null) {
-            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + uv.getNombreComercial());
+    public int agregarUnidadVenta(String nombreComercial, String codigoUnico, 
+    		double superficie, int idResponsable) throws Exception {
+        if (dao.traerUnidadVenta(nombreComercial) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
         }
+        Persona responsable = traerPersona(idResponsable);
+        UnidadDeVenta uv = new UnidadDeVenta(nombreComercial, responsable, superficie, codigoUnico);
         return dao.agregarUnidadVenta(uv);
     }
 
@@ -53,13 +56,18 @@ public class UnidadDeVentaABM {
     
     //----METODOS FOODTRUCK----
     
-    public int agregarFoodTruck(FoodTruck ft) throws Exception {
-        if (dao.traerUnidadVenta(ft.getNombreComercial()) != null) {
-            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + ft.getNombreComercial());
+    public int agregarFoodTruck(String nombreComercial, String codigoUnico, double superficie, 
+            int idResponsable, String patente, boolean conexionElectrica) throws Exception {
+        if (dao.traerUnidadVenta(nombreComercial) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
         }
-        if (dao.traerFoodTruckPorPatente(ft.getPatente()) != null) {
-            throw new Exception("Error: Ya existe un Food Truck registrado con la patente " + ft.getPatente());
+        if (dao.traerFoodTruckPorPatente(patente) != null) {
+            throw new Exception("Error: Ya existe un Food Truck registrado con la patente " + patente);
         }
+        
+        Persona responsable = traerPersona(idResponsable);
+        
+        FoodTruck ft = new FoodTruck(nombreComercial, responsable, superficie, codigoUnico, patente, conexionElectrica);
         return dao.agregarUnidadVenta(ft);
     }
     
@@ -93,10 +101,14 @@ public class UnidadDeVentaABM {
     
     //----METODOS PUESTO DESARMABLE----
     
-    public int agregarPuestoDesarmable(PuestoDesarmable pd) throws Exception {
-        if (dao.traerUnidadVenta(pd.getNombreComercial()) != null) {
-            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + pd.getNombreComercial());
+    public int agregarPuestoDesarmable(String nombreComercial, double superficie, 
+            int idResponsable, String codigoUnico, int cantidadCarpas, int tiempoMontaje) throws Exception {
+    	if (dao.traerUnidadVenta(nombreComercial) != null) {
+            throw new Exception("ERROR: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
         }
+    	
+    	Persona responsable = traerPersona(idResponsable);
+    	PuestoDesarmable pd = new PuestoDesarmable(nombreComercial, responsable, superficie, codigoUnico, cantidadCarpas, tiempoMontaje);
         return dao.agregarUnidadVenta(pd);
     }
 

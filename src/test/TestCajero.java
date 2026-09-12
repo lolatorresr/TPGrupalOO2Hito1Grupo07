@@ -1,6 +1,9 @@
 package test;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import datos.Cajero;
 import negocio.PersonaABM;
 
 public class TestCajero {
@@ -9,28 +12,28 @@ public class TestCajero {
 		PersonaABM abm = new PersonaABM();
 		
 		try {
-			System.out.println("\n--- ALTA DE CAJEROS ---\n");
-			int id1 = abm.agregarCajero("Lola", "Torres", 44507859L, LocalDate.of(2002, 12,5), 
-					LocalDate.of(2022, 3,1), 900000.0, "Tarde", 480000.0);
+			System.out.println("\n--- CONSULTAS DE CAJEROS ---\n");
 			
-			int id2 = abm.agregarCajero("Marco", "Pappalardo", 45876654L, LocalDate.of(2003, 7 ,20), 
-					LocalDate.of(2024, 6,10), 827000.0, "Noche", 520000.0);
+			System.out.println("--- Traer cajero por ID (3) ---\n");
+			System.out.println(abm.traerCajero(3));
 			
-			System.out.println("Cajeros agregados con ID: " + id1 + " y " + id2);
-			
-			System.out.println("--- TRAER CAJERO POR ID ---\n");
-			System.out.println(abm.traerCajero(id1));
-			
-			System.out.println("\n--- LISTA DE CAJEROS ---\n");
+			System.out.println("\n--- Lista de cajeros ---\n");
 			abm.traerCajeros().forEach(System.out::println);
 			
-			System.out.println("\n--- CAJERO CON MAYOR RECAUDACION ---\n");
+			System.out.println("\n--- Cajero con mayor recaudación ---\n");
 			System.out.println(abm.traerCajeroMayorRecaudacion());
 			
-			System.out.println("\n--- PRUEBA EXCEPCION ---");
-			abm.agregarCajero("Lopez", "Lucas", 44507859L , LocalDate.of(2000, 12, 12),
-					LocalDate.of(2024, 11, 23), 600000.0, "Noche", 420000.0);
+			System.out.println("\n--- Cajero turno noche en UV ID 1 ---\n");
+			List<Cajero> cajeros = abm.traerCajerosPorTurnoYUnidadDeVenta("Noche", 1);
+		    cajeros.forEach(System.out::println);
 			
+			try {
+				System.out.println("\n--- Prueba excepción (DNI duplicado) ---");
+				abm.agregarCajero("Lopez", "Lucas", 44507859L , LocalDate.of(2000, 12, 12),
+					LocalDate.of(2024, 11, 23), 600000.0, "Noche", 420000.0);
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();

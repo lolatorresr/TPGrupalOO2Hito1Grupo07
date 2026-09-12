@@ -71,6 +71,10 @@ public class PersonaABM {
 		return dao.traerCajeroMayorRecaudacion();
 	}
 	
+	public List<Cajero> traerCajerosPorTurnoYUnidadDeVenta(String turno, int idUv){
+		return dao.traerCajerosPorTurnoYUv(turno, idUv);
+	}
+	
 
 	//--------METODOS COCINERO--------
 

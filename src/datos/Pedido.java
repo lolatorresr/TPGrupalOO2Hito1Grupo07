@@ -63,8 +63,10 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [idPedido=" + idPedido + ", fechaTransaccion=" + fechaTransaccion + ", festival=" + festival
-				+ ", unidadVenta=" + unidadVenta + ", itemPlatos=" + itemPlatos + "]";
+	    return "Pedido [idPedido=" + idPedido 
+	            + ", fechaTransaccion=" + fechaTransaccion 
+	            + ", idUnidadVenta=" + (unidadVenta != null ? unidadVenta.getIdUnidadDeVenta() : "null") 
+	            + "]";
 	}
 	
 	
