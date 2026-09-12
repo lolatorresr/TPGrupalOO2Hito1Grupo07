@@ -36,6 +36,12 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | **traerCocinerosDeUnidadDeVenta** | Lucia Daniela Ruiz |
 | **traerCocineroMasAntiguo** | Lucia Daniela Ruiz |
 | **traerCocinerosPorEspecialidad** | Lucia Daniela Ruiz |
+| **traerPedidosPorPlato** | Lola Torres Rodriguez |
+| **traerCajerosPorTurnoYUv** | Lola Torres Rodriguez | 
+| **traerCantidadVendidaPorPlato** | Lucia Daniela Ruiz | 
+| **traerItemPlatosPorPedido** | Lucia Daniela Ruiz |
+| **traerItemPlatosPorPlato** | Lucia Daniela Ruiz |
+
 
 
 ## CDU y ABM general
@@ -65,6 +71,11 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | agregarCocinero | Lucia Daniela Ruiz |
 | traerCocinero | Lucia Daniela Ruiz |
 | traerCocineros | Lucia Daniela Ruiz |
+| traerItemPlatos | Lucia Daniela Ruiz |
+| traerItemPlato | Lucia Daniela Ruiz |
+| actualizarItemPlato | Lucia Daniela Ruiz | 
+| eliminarPlatoDePedido | Lucia Daniela Ruiz |
+| agregarItemPlatoAPedido | Lucia Daniela Ruiz |
 
 
 
