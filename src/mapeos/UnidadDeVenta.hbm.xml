@@ -8,28 +8,31 @@
 		<id column="idUnidadDeVenta" name="idUnidadDeVenta">
 			<generator class="identity" />
 		</id>
-		
 
 		<property column="nombreComercial" name="nombreComercial" type="string" />
 		<property column="codigoUnico" name="codigoUnico" type="string" />
 		<property column="superficie" name="superficie" type="double" />
-		<many-to-one name="responsable" class="datos.Persona" column="responsable" />
 		
-		<set name="personal" table="personal" inverse="false"
-			lazy="false" fetch="select">
-		<key column="idUnidadDeVenta" not-null="false" />
-		<one-to-many class="datos.Persona" />
+		
+		<many-to-one name="responsable" class="datos.Persona" column="idResponsable" not-null="false" />
+		
+	
+		<many-to-one name="festival" class="datos.Festival" column="idFestival" not-null="false" />
+		
+		
+		<set name="personal" inverse="true" lazy="false" fetch="select">
+			<key column="idUnidadDeVenta" not-null="false" />
+			<one-to-many class="datos.Persona" />
 		</set>
 		
-		<set name="pedidos" table="pedidos" inverse="true"
-			lazy="false" fetch="select">
-		<key column="idUnidadDeVenta" not-null="true" />
-		<one-to-many class="datos.Pedido" />
+		<set name="pedidos" inverse="true" lazy="false" fetch="select">
+			<key column="idUnidadDeVenta" not-null="true" />
+			<one-to-many class="datos.Pedido" />
 		</set>
-		<set name="platos" table="platos" inverse="true"
-			lazy="false" fetch="select">
-		<key column="idUnidadDeVenta" not-null="false" />
-		<one-to-many class="datos.Plato" />
+		
+		<set name="platos" inverse="true" lazy="false" fetch="select">
+			<key column="idUnidadDeVenta" not-null="false" />
+			<one-to-many class="datos.Plato" />
 		</set>
 
 		<!-- Subclase PuestoDesarmable -->
@@ -45,8 +48,5 @@
 			<property name="patente" column="patente" type="string"/>
 			<property name="conexionElectrica" column="conexionElectrica" type="boolean"/>
 		</joined-subclass>
-</class>
+	</class>
 </hibernate-mapping>
-
-
-

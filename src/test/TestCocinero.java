@@ -35,7 +35,7 @@ public class TestCocinero {
 
 			System.out.println("\n--- 4. ALTA DE UNIDAD DE VENTA Y ASIGNACION DE PERSONAL ---\n");
 			Cocinero responsable = abm.traerCocinero(id1);
-			UnidadDeVenta uv = new UnidadDeVenta("El Buen Sabor", responsable, 30.0, "UV-COC001");
+			UnidadDeVenta uv = new UnidadDeVenta("El Buen Sabor", 30.0, "UV-COC001");
 			/*int idUv = uvAbm.agregarUnidadVenta(uv);
 			System.out.println("Unidad de venta agregada con ID: " + idUv);
 

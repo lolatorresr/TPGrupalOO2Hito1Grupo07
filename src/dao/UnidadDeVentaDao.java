@@ -181,9 +181,12 @@ public class UnidadDeVentaDao {
 			UnidadDeVenta u = (UnidadDeVenta) session.get(UnidadDeVenta.class, unidad.getIdUnidadDeVenta());
 			Hibernate.initialize(u.getPersonal());
 
+			//Enlazamos la persona a la unidad
+			persona.setUnidadDeVenta(u);
 			u.getPersonal().add(persona);
 
 			session.update(u);
+			session.update(persona); 
 
 			tx.commit();
 		} catch (HibernateException he) {
@@ -403,5 +406,38 @@ public class UnidadDeVentaDao {
 		}
 		return resultado;
 	}
+	
+	
+	// ---- CONSULTAS COMPLEJAS DE FESTIVAL ----
+
+	public List<FoodTruck> traerFoodTruckPorFestivalYElectricidad(String nombreFestival, boolean electricidad) {
+		List<FoodTruck> lista = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "from FoodTruck f inner join fetch f.festival fes "
+					+ "where fes.nombre = :nombreFest and f.conexionElectrica = :elec";
+			lista = session.createQuery(hql, FoodTruck.class).setParameter("nombreFest", nombreFestival)
+					.setParameter("elec", electricidad).getResultList();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
+
+	public List<PuestoDesarmable> traerPuestoPorFestivalYCarpas(String nombreFestival, int cantidadMinimaCarpas) {
+		List<PuestoDesarmable> lista = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+
+			String hql = "from PuestoDesarmable p inner join fetch p.festival fes "
+					+ "where fes.nombre = :nombreFest and p.cantidadCarpas > :minCarpas";
+			lista = session.createQuery(hql, PuestoDesarmable.class).setParameter("nombreFest", nombreFestival)
+					.setParameter("minCarpas", cantidadMinimaCarpas).getResultList();
+		} finally {
+			session.close();
+		}
+		return lista;
+	}
 
 }
+

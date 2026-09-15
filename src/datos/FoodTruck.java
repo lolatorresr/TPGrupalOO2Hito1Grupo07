@@ -1,17 +1,17 @@
 package datos;
 
-public class FoodTruck extends UnidadDeVenta{
+public class FoodTruck extends UnidadDeVenta {
 	private String patente;
 	private boolean conexionElectrica;
 	
 	public FoodTruck() {
 	}
 
-	public FoodTruck(String nombreComercial, Persona responsable, double superficie, String codigoUnico,
+	public FoodTruck(String nombreComercial, double superficie, String codigoUnico,
 			String patente, boolean conexionElectrica) {
-		super(nombreComercial, responsable, superficie, codigoUnico);
-		this.patente=patente;
-		this.conexionElectrica=conexionElectrica;
+		super(nombreComercial, superficie, codigoUnico);
+		this.patente = patente;
+		this.conexionElectrica = conexionElectrica;
 	}
 
 	public String getPatente() {
@@ -34,9 +34,4 @@ public class FoodTruck extends UnidadDeVenta{
 	public String toString() {
 		return super.toString() + " | FoodTruck [patente=" + patente + ", conexionElectrica=" + conexionElectrica + "]";
 	}
-	
-	
-	
-	
-
 }

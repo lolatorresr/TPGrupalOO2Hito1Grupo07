@@ -7,11 +7,11 @@ public class PuestoDesarmable extends UnidadDeVenta {
 	public PuestoDesarmable() {
 	}
 
-	public PuestoDesarmable(String nombreComercial, Persona responsable, double superficie, String codigoUnico, 
+	public PuestoDesarmable(String nombreComercial, double superficie, String codigoUnico, 
 			int cantidadCarpas, int tiempoMontaje) {
-		super(nombreComercial, responsable, superficie, codigoUnico);
-		this.cantidadCarpas=cantidadCarpas;
-		this.tiempoMontaje=tiempoMontaje;
+		super(nombreComercial, superficie, codigoUnico);
+		this.cantidadCarpas = cantidadCarpas;
+		this.tiempoMontaje = tiempoMontaje;
 	}
 
 	public int getCantidadCarpas() {
@@ -34,8 +34,4 @@ public class PuestoDesarmable extends UnidadDeVenta {
 	public String toString() {
 		return super.toString() + " | PuestoDesarmable [cantidadCarpas=" + cantidadCarpas + ", tiempoMontaje=" + tiempoMontaje + "]";
 	}
-	
-	
-	
-
 }

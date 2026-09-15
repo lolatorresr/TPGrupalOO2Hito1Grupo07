@@ -1,6 +1,5 @@
 package negocio;
 
-import java.util.HashSet;
 import java.util.List;
 import dao.UnidadDeVentaDao;
 import datos.UnidadDeVenta;
@@ -9,6 +8,7 @@ import datos.Plato;
 import datos.PuestoDesarmable;
 import datos.FoodTruck;
 import datos.Pedido;
+import datos.Festival;
 
 public class UnidadDeVentaABM {
 	
@@ -26,15 +26,23 @@ public class UnidadDeVentaABM {
         return instancia;
     }
     
-  //--------ABM UNIDAD DE VENTA--------
+    //--------ABM UNIDAD DE VENTA--------
     
-    public int agregarUnidadVenta(String nombreComercial, String codigoUnico, 
-    		double superficie, int idResponsable) throws Exception {
+    // Se quitó idResponsable
+    public int agregarUnidadVenta(String nombreComercial, String codigoUnico, double superficie) throws Exception {
         if (dao.traerUnidadVenta(nombreComercial) != null) {
             throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
         }
-        Persona responsable = traerPersona(idResponsable);
-        UnidadDeVenta uv = new UnidadDeVenta(nombreComercial, responsable, superficie, codigoUnico);
+        // Se instancia sin responsable
+        UnidadDeVenta uv = new UnidadDeVenta(nombreComercial, superficie, codigoUnico);
+        return dao.agregarUnidadVenta(uv);
+    }
+
+    // Sobrecarga por si le pasas el objeto armado (útil para el test)
+    public int agregarUnidadVenta(UnidadDeVenta uv) throws Exception {
+        if (dao.traerUnidadVenta(uv.getNombreComercial()) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + uv.getNombreComercial());
+        }
         return dao.agregarUnidadVenta(uv);
     }
 
@@ -56,8 +64,9 @@ public class UnidadDeVentaABM {
     
     //----METODOS FOODTRUCK----
     
+    // Se quitó idResponsable
     public int agregarFoodTruck(String nombreComercial, String codigoUnico, double superficie, 
-            int idResponsable, String patente, boolean conexionElectrica) throws Exception {
+            String patente, boolean conexionElectrica) throws Exception {
         if (dao.traerUnidadVenta(nombreComercial) != null) {
             throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
         }
@@ -65,9 +74,18 @@ public class UnidadDeVentaABM {
             throw new Exception("Error: Ya existe un Food Truck registrado con la patente " + patente);
         }
         
-        Persona responsable = traerPersona(idResponsable);
-        
-        FoodTruck ft = new FoodTruck(nombreComercial, responsable, superficie, codigoUnico, patente, conexionElectrica);
+        FoodTruck ft = new FoodTruck(nombreComercial, superficie, codigoUnico, patente, conexionElectrica);
+        return dao.agregarUnidadVenta(ft);
+    }
+
+    // Sobrecarga por si le pasas el objeto armado
+    public int agregarFoodTruck(FoodTruck ft) throws Exception {
+        if (dao.traerUnidadVenta(ft.getNombreComercial()) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + ft.getNombreComercial());
+        }
+        if (dao.traerFoodTruckPorPatente(ft.getPatente()) != null) {
+            throw new Exception("Error: Ya existe un Food Truck registrado con la patente " + ft.getPatente());
+        }
         return dao.agregarUnidadVenta(ft);
     }
     
@@ -101,17 +119,24 @@ public class UnidadDeVentaABM {
     
     //----METODOS PUESTO DESARMABLE----
     
+    // Se quitó idResponsable
     public int agregarPuestoDesarmable(String nombreComercial, double superficie, 
-            int idResponsable, String codigoUnico, int cantidadCarpas, int tiempoMontaje) throws Exception {
+            String codigoUnico, int cantidadCarpas, int tiempoMontaje) throws Exception {
     	if (dao.traerUnidadVenta(nombreComercial) != null) {
             throw new Exception("ERROR: Ya existe una Unidad de Venta con el nombre " + nombreComercial);
         }
     	
-    	Persona responsable = traerPersona(idResponsable);
-    	PuestoDesarmable pd = new PuestoDesarmable(nombreComercial, responsable, superficie, codigoUnico, cantidadCarpas, tiempoMontaje);
+    	PuestoDesarmable pd = new PuestoDesarmable(nombreComercial, superficie, codigoUnico, cantidadCarpas, tiempoMontaje);
         return dao.agregarUnidadVenta(pd);
     }
 
+    // Sobrecarga por si le pasas el objeto armado
+    public int agregarPuestoDesarmable(PuestoDesarmable pd) throws Exception {
+        if (dao.traerUnidadVenta(pd.getNombreComercial()) != null) {
+            throw new Exception("Error: Ya existe una Unidad de Venta con el nombre " + pd.getNombreComercial());
+        }
+        return dao.agregarUnidadVenta(pd);
+    }
 
     public void eliminarPuestoDesarmable(int idUnidadDeVenta) throws Exception {
         PuestoDesarmable pd = dao.traerPuestoDesarmable(idUnidadDeVenta);
@@ -133,7 +158,33 @@ public class UnidadDeVentaABM {
         return dao.traerPuestosDesarmables();
     }
     
-    //---------------------------
+    //---- ASIGNACIONES POSTERIORES ----
+    
+    public void asignarResponsable(int idUnidadDeVenta, Persona responsable) throws Exception {
+        UnidadDeVenta uv = dao.traerUnidadVenta(idUnidadDeVenta);
+        if (uv == null) {
+            throw new Exception("Error: No existe la Unidad de Venta con ID " + idUnidadDeVenta);
+        }
+        if (responsable == null) {
+            throw new Exception("Error: La persona a asignar como responsable no puede ser nula.");
+        }
+        
+        uv.setResponsable(responsable);
+        dao.actualizarUnidadVenta(uv);
+    }
+
+    public void asignarFestival(int idUnidadDeVenta, Festival festival) throws Exception {
+        UnidadDeVenta uv = dao.traerUnidadVenta(idUnidadDeVenta);
+        if (uv == null) {
+            throw new Exception("Error: No existe la Unidad de Venta con ID " + idUnidadDeVenta);
+        }
+        if (festival == null) {
+            throw new Exception("Error: El festival a asignar no puede ser nulo.");
+        }
+        
+        uv.setFestival(festival);
+        dao.actualizarUnidadVenta(uv);
+    }
     
     public void agregarPersonal(int idUnidadDeVenta, Persona persona) throws Exception {
         UnidadDeVenta uv = dao.traerUnidadDeVentaYPersonal(idUnidadDeVenta);
@@ -180,9 +231,25 @@ public class UnidadDeVentaABM {
         dao.agregarPedido(uv, pedido);
     }
     
-    
-    //----CONSULTAS----
+    //----CONSULTAS COMPLEJAS HQL (NUEVAS)----
 
+    public List<FoodTruck> traerFoodTruckPorFestivalYElectricidad(String nombreFestival, boolean electricidad) throws Exception {
+        List<FoodTruck> lista = dao.traerFoodTruckPorFestivalYElectricidad(nombreFestival, electricidad);
+        if (lista == null || lista.isEmpty()) {
+            throw new Exception("No se encontraron Food Trucks para el festival '" + nombreFestival + "' con electricidad = " + electricidad);
+        }
+        return lista;
+    }
+
+    public List<PuestoDesarmable> traerPuestoPorFestivalYCarpas(String nombreFestival, int cantidadMinimaCarpas) throws Exception {
+        List<PuestoDesarmable> lista = dao.traerPuestoPorFestivalYCarpas(nombreFestival, cantidadMinimaCarpas);
+        if (lista == null || lista.isEmpty()) {
+            throw new Exception("No se encontraron Puestos Desarmables en el festival '" + nombreFestival + "' con más de " + cantidadMinimaCarpas + " carpas.");
+        }
+        return lista;
+    }
+    
+    //----CONSULTAS BÁSICAS----
 
     public UnidadDeVenta traerUnidadVenta(int idUnidadDeVenta) throws Exception {
         UnidadDeVenta u = dao.traerUnidadVenta(idUnidadDeVenta);
@@ -258,7 +325,6 @@ public class UnidadDeVentaABM {
         }
         return p;
     }
-    
     
     //-----------------------
     

@@ -31,7 +31,7 @@ public class TestItemPlato {
 			System.out.println("\n--- 2. DATOS DE PRUEBA: UNIDAD DE VENTA Y PEDIDOS ---\n");
 			Cocinero responsable = personaAbm.traerCocinero(personaAbm.agregarCocinero("Nicolas", "Aguirre",
 					33444555L, LocalDate.of(1991, 3, 12), LocalDate.of(2022, 7, 1), 900000.0, "Cocina criolla", "A"));
-			UnidadDeVenta uv = new UnidadDeVenta("La Esquina Gourmet", responsable, 25.0, "UV-ITE001");
+			UnidadDeVenta uv = new UnidadDeVenta("La Esquina Gourmet", 25.0, "UV-ITE001");
 		/*	int idUv = uvAbm.agregarUnidadVenta(uv);
 
 			int idPedido1 = pedidoAbm.agregarPedido(LocalDate.now(), null, uvAbm.traerUnidadVenta(idUv));

@@ -3,8 +3,6 @@ package datos;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import datos.Persona;
-
 public class Persona {
 	
 	protected String nombre;
@@ -14,7 +12,7 @@ public class Persona {
 	protected LocalDate fechaIngreso;
 	protected double sueldoBase;
 	protected int idPersona;
-	
+	protected UnidadDeVenta unidadDeVenta; 
 	
 	public Persona() {
 		
@@ -30,13 +28,14 @@ public class Persona {
 		this.sueldoBase = sueldoBase;
 	}
 
-	
 	public int getIdPersona() {
 		return idPersona;
 	}
+	
 	protected void setIdPersona(int idPersona) {
 		this.idPersona = idPersona;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -44,26 +43,60 @@ public class Persona {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	public String getApellido() {
 		return apellido;
 	}
+	
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
 	public long getDni() {
 		return dni;
 	}
+	
 	public void setDni(long dni) {
 		this.dni = dni;
 	}
+	
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+	
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	public LocalDate getFechaIngreso() {
+		return fechaIngreso;
+	}
+	
+	public void setFechaIngreso(LocalDate fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
+	}
+	
+	public double getSueldoBase() {
+		return sueldoBase;
+	}
+	
+	public void setSueldoBase(double sueldoBase) {
+		this.sueldoBase = sueldoBase;
+	}
+
+	public UnidadDeVenta getUnidadDeVenta() {
+		return unidadDeVenta;
+	}
+
+	public void setUnidadDeVenta(UnidadDeVenta unidadDeVenta) {
+		this.unidadDeVenta = unidadDeVenta;
+	}
+
 	@Override
 	public String toString() {
 		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", fechaNacimiento="
 				+ fechaNacimiento + ", fechaIngreso=" + fechaIngreso + ", sueldoBase=" + sueldoBase + ", idPersona="
-				+ idPersona + "]";
+				+ idPersona + ", idUnidadDeVenta=" + (unidadDeVenta != null ? unidadDeVenta.getIdUnidadDeVenta() : "Ninguna") + "]";
 	}
 
 	@Override
@@ -86,22 +119,4 @@ public class Persona {
 				&& Objects.equals(nombre, other.nombre)
 				&& Double.doubleToLongBits(sueldoBase) == Double.doubleToLongBits(other.sueldoBase);
 	}
-
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-	public LocalDate getFechaIngreso() {
-		return fechaIngreso;
-	}
-	public void setFechaIngreso(LocalDate fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
-	public double getSueldoBase() {
-		return sueldoBase;
-	}
-	public void setSueldoBase(double sueldoBase) {
-		this.sueldoBase = sueldoBase;
-	}
-	
-
 }

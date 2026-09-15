@@ -69,11 +69,11 @@ public class TestCargaDatos {
 			System.out.println("\n---- Alta de Unidades de Venta----\n");
 			
 			//foodtruck
-			int idUv1 = unidadABM.agregarFoodTruck("BurgerMovil", "FT-001", 22.5, idCocinero1,
+			int idUv1 = unidadABM.agregarFoodTruck("BurgerMovil", "FT-001", 22.5,
 					"AF123JK", true);
 			System.out.println("\nFoodTruck 1 agregado con ID: " + idUv1);
 			
-			int idUv2 = unidadABM.agregarFoodTruck("Panchos pepe", "FT-002", 23.9, idCocinero2,
+			int idUv2 = unidadABM.agregarFoodTruck("Panchos pepe", "FT-002", 23.9,
 					"PE333PE", true);
 			System.out.println("\nFoodTruck 2 agregado con ID: " + idUv2);
 			
@@ -81,11 +81,11 @@ public class TestCargaDatos {
 			//puesto desarmable
 			//@lu agregar cocineros (1 pastelero)
 			//@juampi asignar cocineros a c/puestodesarm
-			int idUv3 = unidadABM.agregarPuestoDesarmable("Pasta Rossa" , 18.0, idCocinero2, 
+			int idUv3 = unidadABM.agregarPuestoDesarmable("Pasta Rossa" , 18.0, 
 					"PD-001", 3, 60);
 			System.out.println("\nPuesto Desarmable 1 agregado con ID: " + idUv3);
 
-			int idUv4 = unidadABM.agregarPuestoDesarmable("Pasteleria 212" , 13.0, idCocinero2, 
+			int idUv4 = unidadABM.agregarPuestoDesarmable("Pasteleria 212" , 13.0, 
 					"PD-002", 2, 40);
 			System.out.println("\nPuesto Desarmable 2 agregado con ID: " + idUv4);
 			
