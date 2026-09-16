@@ -44,6 +44,21 @@ public class TestCargaDatos {
 					580000.0, "Asados y Frituras" , "Cocinero principal");
 			System.out.println("\nCocinero 2 agregado con ID: " + idCocinero2);
 			
+			int idCocinero3 = personaABM.agregarCocinero("Luis Alberto", "Spinetta", 
+					31556887L, LocalDate.of(1950, 1, 23), LocalDate.of(2021, 5, 10),
+					620000.0, "Pasteleria" , "Jefe de cocina");
+			System.out.println("\nCocinero 3 agregado con ID: " + idCocinero3);
+			
+			int idCocinero4 = personaABM.agregarCocinero("Carlos", "Garcia", 
+					33778221L, LocalDate.of(1951, 10, 23), LocalDate.of(2022, 8, 15),
+					590000.0, "Asados y Frituras" , "Cocinero principal");
+			System.out.println("\nCocinero 4 agregado con ID: " + idCocinero4);
+			
+			int idCocinero5 = personaABM.agregarCocinero("Gustavo", "Cerati", 
+					34009116L, LocalDate.of(1959, 8, 11), LocalDate.of(2025, 1, 20),
+					540000.0, "Pasteleria" , "Ayudante de cocina");
+			System.out.println("\nCocinero 5 agregado con ID: " + idCocinero5);
+			
 			System.out.println("\n---- Alta de Cajeros----\n");
 			
 			int idCajero1 = personaABM.agregarCajero("Willy", "Quiroga", 
@@ -79,7 +94,6 @@ public class TestCargaDatos {
 			
 			
 			//puesto desarmable
-			//@lu agregar cocineros (1 pastelero)
 			//@juampi asignar cocineros a c/puestodesarm
 			int idUv3 = unidadABM.agregarPuestoDesarmable("Pasta Rossa" , 18.0, idCocinero2, 
 					"PD-001", 3, 60);
@@ -94,21 +108,29 @@ public class TestCargaDatos {
 			unidadABM.agregarPersonal(idUv3, unidadABM.traerPersona(idCajero3));
 			unidadABM.agregarPersonal(idUv4, unidadABM.traerPersona(idCajero4));
 			
+			//cocineros asignados al staff de cada unidad
+			unidadABM.agregarPersonal(idUv1, unidadABM.traerPersona(idCocinero2));
+			unidadABM.agregarPersonal(idUv1, unidadABM.traerPersona(idCocinero4));
+			unidadABM.agregarPersonal(idUv3, unidadABM.traerPersona(idCocinero1));
+			unidadABM.agregarPersonal(idUv4, unidadABM.traerPersona(idCocinero3));
+			unidadABM.agregarPersonal(idUv4, unidadABM.traerPersona(idCocinero5));
+			
 			System.out.println("\n---- Alta de Platos----\n");
 			
-			int idPlato1 = platoABM.agregarPlato("Hamburguesa completa", 11000.0, idCocinero2);
-			int idPlato2 = platoABM.agregarPlato("Lomito Clásico", 12000.0, idCocinero2);
-			System.out.println("\nPlatos Cocinero 1 creados con IDs: "+ idPlato1 + " y " + idPlato2);
+			int idPlato1 = platoABM.agregarPlato("Hamburguesa completa", 11000.0, 4500.0);
+			int idPlato2 = platoABM.agregarPlato("Lomito Clásico", 12000.0, 5000.0);
+			int idPlato3 = platoABM.agregarPlato("Ñoquis con salsa blanca", 13000.0, 5200.0);
+			int idPlato4 = platoABM.agregarPlato("Super pancho", 4000.0, 1500.0);
+			int idPlato5 = platoABM.agregarPlato("Red Velvet", 9000.0, 3500.0);
+			System.out.println("\nPlatos creados con IDs: " + idPlato1 + ", " + idPlato2 + ", "
+					+ idPlato3 + ", " + idPlato4 + " y " + idPlato5);
 			
-			/*
-			 * falta agregar 3 cocineros y ponerlos aca
-			int idPlato2 = platoABM.agregarPlato("Ñoquis con salsa blanca", 13000.0, idCocinero);
-			int idPlato3 = platoABM.agregarPlato("Super pancho", 4000.0, idCocinero);
-			int idPlato4 = platoABM.agregarPlato("Red Velvet", 9000.0, idCocinero);
-			*/
-			
+			//cada plato va a la unidad que corresponde a su rubro
 			unidadABM.agregarPlato(idUv1, unidadABM.traerPlato(idPlato1));
 			unidadABM.agregarPlato(idUv1, unidadABM.traerPlato(idPlato2));
+			unidadABM.agregarPlato(idUv2, unidadABM.traerPlato(idPlato4));
+			unidadABM.agregarPlato(idUv3, unidadABM.traerPlato(idPlato3));
+			unidadABM.agregarPlato(idUv4, unidadABM.traerPlato(idPlato5));
 			
 			System.out.println("\n---- Alta de Pedidos----\n");
 			
@@ -125,6 +147,7 @@ public class TestCargaDatos {
 			itemPlatoABM.agregarItemPlatoAPedido(idPedido1, idPlato2, 1);
 			
 			itemPlatoABM.agregarItemPlatoAPedido(idPedido2, idPlato1, 3);
+			itemPlatoABM.agregarItemPlatoAPedido(idPedido2, idPlato4, 5);
 			
 			System.out.println("\n--------------------------------------\n");
 			System.out.println("------- FIN CARGA DE DATOS -------");
