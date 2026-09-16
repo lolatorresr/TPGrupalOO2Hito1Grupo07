@@ -2,10 +2,6 @@ package datos;
 
 import java.util.HashSet;
 import java.util.Set;
-import datos.ItemPlato;
-import java.util.Map;
-import java.util.HashMap;
-import java.time.LocalDate;
 
 public class UnidadDeVenta {
 	protected int idUnidadDeVenta;
@@ -16,18 +12,16 @@ public class UnidadDeVenta {
 	protected Set<Persona> personal;
 	protected Set<Plato> platos;
 	protected Set<Pedido> pedidos;
+	protected Festival festival; 
 
-	
 	public UnidadDeVenta () {
 	}
 	
-	public UnidadDeVenta(String nombreComercial, Persona responsable, double superficie,
-			String codigoUnico) {
-		this.nombreComercial=nombreComercial;
-		this.responsable=responsable;
-		this.superficie=superficie;
-		this.codigoUnico=codigoUnico;
-		this.personal= new HashSet<Persona>();
+	public UnidadDeVenta(String nombreComercial, double superficie, String codigoUnico) {
+		this.nombreComercial = nombreComercial;
+		this.superficie = superficie;
+		this.codigoUnico = codigoUnico;
+		this.personal = new HashSet<Persona>();
 	}
 
 	public int getIdUnidadDeVenta() {
@@ -77,7 +71,6 @@ public class UnidadDeVenta {
 	public void setPersonal(Set<Persona> personal) {
 		this.personal = personal;
 	}
-	
 
 	public Set<Plato> getPlatos() {
 		return platos;
@@ -94,16 +87,24 @@ public class UnidadDeVenta {
 	public void setPedidos(Set<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
+
+	public Festival getFestival() {
+		return festival;
+	}
+
+	public void setFestival(Festival festival) {
+		this.festival = festival;
+	}
 	
 	public double calcularRecaudacionTotal() {
 	    double total = 0.0;
 	    if (this.pedidos != null) {
 	        for (Pedido p : this.pedidos) {
 	            if (p.getItemPlatos() != null) {
-	            	for(ItemPlato item : p.getItemPlatos()) {
-	            	total += item.getSubTotal();
+	                for(ItemPlato item : p.getItemPlatos()) {
+	                    total += item.getSubTotal();
+	                }
 	            }
-	           }
 	        }
 	    }
 	    return total;
@@ -114,11 +115,11 @@ public class UnidadDeVenta {
 	    if (this.pedidos != null && plato != null) {
 	        for (Pedido p : this.pedidos) {
 	            if (p.getItemPlatos() != null) {
-	            	for(ItemPlato item : p.getItemPlatos()) {
-	            		if(item.getPlato() != null && plato.equals(item.getPlato())) {
-	            			total += item.getCantidad();
-	            		}
-	            	}
+	                for(ItemPlato item : p.getItemPlatos()) {
+	                    if(item.getPlato() != null && plato.equals(item.getPlato())) {
+	                        total += item.getCantidad();
+	                    }
+	                }
 	            }
 	        }
 	    }
@@ -131,22 +132,22 @@ public class UnidadDeVenta {
 
 	    if (this.pedidos != null) {
 	        for (Pedido p : this.pedidos) {
-	        	for(ItemPlato item : p.getItemPlatos()) {
-	        		 if (p.getItemPlatos() != null) {
-	 	                Plato platoActual = item.getPlato();
-	 	                int cantidadActual = this.calcularCantidadDePlato(platoActual);
+	            if (p.getItemPlatos() != null) {
+	                for(ItemPlato item : p.getItemPlatos()) {
+	                    Plato platoActual = item.getPlato();
+	                    int cantidadActual = this.calcularCantidadDePlato(platoActual);
 
-	 	                if (cantidadActual > maxCantidad) {
-	 	                    maxCantidad = cantidadActual;
-	 	                    masPedido = platoActual;
-	        	}
+	                    if (cantidadActual > maxCantidad) {
+	                        maxCantidad = cantidadActual;
+	                        masPedido = platoActual;
+	                    }
 	                }
 	            }
 	        }
 	    }
-
 	    return masPedido;
 	}
+
 	public int getCantidadPedidos() {
 	    return this.pedidos.size();
 	}
@@ -158,9 +159,7 @@ public class UnidadDeVenta {
 	            + ", codigoUnico=" + codigoUnico 
 	            + ", superficie=" + superficie 
 	            + ", idResponsable=" + (responsable != null ? responsable.getIdPersona() : "null") 
+	            + ", idFestival=" + (festival != null ? festival.getIdFestival() : "null")
 	            + "]";
 	}
-	
-	
-	
 }

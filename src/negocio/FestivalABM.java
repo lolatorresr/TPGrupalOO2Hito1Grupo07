@@ -36,6 +36,14 @@ public class FestivalABM {
 		}
 		dao.eliminarFestival(f);
 	}
+	
+	public Festival traerFestivalPorNombre(String nombre) throws Exception {
+		Festival f = dao.traerFestivalPorNombre(nombre);
+		if (f == null) {
+			throw new Exception("Error: No existe el festival con nombre " + nombre);
+		}
+		return f;
+	}
 
 	
 	public Festival traerFestivalYUnidades(int idFestival) {

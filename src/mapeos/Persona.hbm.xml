@@ -11,11 +11,11 @@
 		<property column="apellido" name="apellido" type="string" />
 		<property column="nombre" name="nombre" type="string" />
 		<property column="dni" name="dni" type="long" />
-		<property column="fechaNacimiento" name="fechaNacimiento"
-			type="LocalDate" />
-		<property column="fechaIngreso" name="fechaIngreso"
-			type="LocalDate" />
+		<property column="fechaNacimiento" name="fechaNacimiento" type="LocalDate" />
+		<property column="fechaIngreso" name="fechaIngreso" type="LocalDate" />
 		<property column="sueldoBase" name="sueldoBase" type="double" />
+
+		<many-to-one name="unidadDeVenta" class="datos.UnidadDeVenta" column="idUnidadDeVenta" not-null="false" />
 
 		<!-- subclases-->
 		<joined-subclass name="datos.Cajero" table="cajero">
@@ -30,10 +30,5 @@
 			<property name="categoria" column="categoria" type="string"/>
 		</joined-subclass>
 
-
-</class>
+	</class>
 </hibernate-mapping>
-
-
-
-

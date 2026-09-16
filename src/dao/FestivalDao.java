@@ -94,5 +94,18 @@ public class FestivalDao {
 		return f;
 	}
 	
+	public Festival traerFestivalPorNombre(String nombre) {
+		Festival f = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			f = (Festival) session.createQuery("from Festival f where f.nombre = :nombre")
+					              .setParameter("nombre", nombre)
+					              .uniqueResult();
+		} finally {
+			session.close();
+		}
+		return f;
+	}
+	
 
 }
