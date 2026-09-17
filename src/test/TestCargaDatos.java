@@ -89,18 +89,17 @@ public class TestCargaDatos {
 			System.out.println("\nFoodTruck 1 agregado con ID: " + idUv1);
 			
 			int idUv2 = unidadABM.agregarFoodTruck("Panchos pepe", "FT-002", 23.9,
-					"PE333PE", true);
+					"PE333PE", false);
 			System.out.println("\nFoodTruck 2 agregado con ID: " + idUv2);
 			
 			
 			//puesto desarmable
-			//@juampi asignar cocineros a c/puestodesarm
 			int idUv3 = unidadABM.agregarPuestoDesarmable("Pasta Rossa" , 18.0, 
 					"PD-001", 3, 60);
 			System.out.println("\nPuesto Desarmable 1 agregado con ID: " + idUv3);
 
 			int idUv4 = unidadABM.agregarPuestoDesarmable("Pasteleria 212" , 13.0, 
-					"PD-002", 2, 40);
+					"PD-002", 1, 40);
 			System.out.println("\nPuesto Desarmable 2 agregado con ID: " + idUv4);
 			
 			unidadABM.agregarPersonal(idUv1, unidadABM.traerPersona(idCajero1));
@@ -114,6 +113,21 @@ public class TestCargaDatos {
 			unidadABM.agregarPersonal(idUv3, unidadABM.traerPersona(idCocinero1));
 			unidadABM.agregarPersonal(idUv4, unidadABM.traerPersona(idCocinero3));
 			unidadABM.agregarPersonal(idUv4, unidadABM.traerPersona(idCocinero5));
+			
+			System.out.println("\n---- Asignación de Responsables y Festivales a Unidades de Venta----\n");
+			
+			// Asignamos a los cajeros como responsables de cada unidad
+			unidadABM.asignarResponsable(idUv1, unidadABM.traerPersona(idCajero1));
+			unidadABM.asignarResponsable(idUv2, unidadABM.traerPersona(idCajero2));
+			unidadABM.asignarResponsable(idUv3, unidadABM.traerPersona(idCajero3));
+			unidadABM.asignarResponsable(idUv4, unidadABM.traerPersona(idCajero4));
+			
+			// Vinculamos todas las unidades al festival
+			unidadABM.asignarFestival(idUv1, festivalABM.traerFestival(idFestival));
+			unidadABM.asignarFestival(idUv2, festivalABM.traerFestival(idFestival));
+			unidadABM.asignarFestival(idUv3, festivalABM.traerFestival(idFestival));
+			unidadABM.asignarFestival(idUv4, festivalABM.traerFestival(idFestival));
+			
 			
 			System.out.println("\n---- Alta de Platos----\n");
 			
