@@ -41,6 +41,8 @@ Hito 1: Hibernate - Sistema de Gestión Epicentro Gourmet
 | **traerCantidadVendidaPorPlato** | Lucia Daniela Ruiz | 
 | **traerItemPlatosPorPedido** | Lucia Daniela Ruiz |
 | **traerItemPlatosPorPlato** | Lucia Daniela Ruiz |
+| **traerFoodTruckPorFestivalYElectricidad** | Juan Pablo Lombisano Bentos |
+| **traerPuestoPorFestivalYCarpas** | Juan Pablo Lombisano Bentos |
 
 
 
